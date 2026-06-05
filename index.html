@@ -66,7 +66,7 @@ nav {
 }
 .hero-img {
   position: absolute; inset: 0;
-  background: url('IMG-20250605-WA0028.jpg') center/cover no-repeat;
+  background: url('IMG-20250605-WA0028.jpg') center 65%/cover no-repeat;
   opacity: 0.88;
 }
 .hero-overlay {
@@ -189,10 +189,12 @@ p.lead { font-family: var(--serif); font-size: 18px; line-height: 1.8; color: va
 /* ── LOCATION ── */
 .location-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
 @media (max-width: 640px) { .location-grid { grid-template-columns: 1fr; } }
-.location-card { padding: 28px 32px; background: var(--white); border: 1px solid var(--gray-light); }
+.location-card { background: var(--white); border: 1px solid var(--gray-light); overflow: hidden; }
+.location-card-body { padding: 24px 28px; }
 .location-card-dist { font-family: var(--sans); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sand); margin-bottom: 6px; }
 .location-card-title { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--charcoal); margin-bottom: 6px; }
 .location-card-desc { font-family: var(--sans); font-size: 13px; color: var(--gray); line-height: 1.6; }
+.location-card img { width: 100%; height: 160px; object-fit: cover; display: block; }
 
 /* ── BOOKING ── */
 .booking-section { background: var(--sand-pale); padding: 96px 0; text-align: center; }
@@ -210,6 +212,16 @@ footer { background: var(--charcoal); color: rgba(255,255,255,0.55); padding: 48
 .footer-links a:hover { color: rgba(255,255,255,0.8); }
 .footer-copy { font-family: var(--sans); font-size: 11px; color: rgba(255,255,255,0.25); }
 @media (max-width: 600px) { footer { padding: 36px 24px; } .footer-inner { flex-direction: column; align-items: flex-start; } }
+
+/* ── REVIEWS ── */
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 768px) { .reviews-grid { grid-template-columns: 1fr; } }
+
+/* ── MOBILE FIXES ── */
+@media (max-width: 640px) {
+  .pool-photos-wrap { padding: 0 24px 64px !important; }
+  #rates > div { padding: 64px 24px !important; }
+}
 
 /* ── SCROLL REVEAL ── */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -343,12 +355,15 @@ body.lang-es .es.inline-block { display: inline-block; }
     <h2 class="en">The <em>spaces</em></h2>
     <h2 class="es">Los <em>espacios</em></h2>
     <div class="gallery-masonry">
+      <img src="https://quinta-sierras.vercel.app/house-overview.jpg" alt="Quinta Sierras — house, pool and view at dusk">
       <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1442691730496338480/original/d808d615-38e2-4dbe-9070-0fde26fe74c2.jpeg?im_w=1200" alt="Living room with sofa, steel-frame windows and valley views">
       <img src="PXL_20250409_190232782.jpg" alt="Living room with wood stove and open kitchen">
       <img src="PXL_20251203_133016307.jpg" alt="View through steel-frame windows to terrace and valley">
       <img src="PXL_20251216_112250440.jpg" alt="Garden and pool with native forest and valley views">
       <img src="PXL_20250627_165946938.jpg" alt="Quincho outdoor living and dining area">
       <img src="PXL_20231112_233014294.jpg" alt="Interior at night — fireplace and butterfly chairs">
+      <img src="https://quinta-sierras.vercel.app/still-life.jpg" alt="Kitchen still life with valley view">
+      <img src="https://quinta-sierras.vercel.app/tree-allee.jpg" alt="Tree-lined entrance road to Barrio Paso de Piedra">
     </div>
   </div>
 </div>
@@ -391,7 +406,7 @@ body.lang-es .es.inline-block { display: inline-block; }
     <p class="lead en">A private infinity-edge pool perched on the hillside — swim with panoramic views stretching to Córdoba city and the plains beyond. Fully enclosed and private — swimwear optional.</p>
     <p class="lead es">Una pileta de borde infinito suspendida en la ladera — nadá con vistas panorámicas hasta la ciudad de Córdoba. Totalmente privada — sin código de vestimenta.</p>
   </div>
-  <div style="max-width:1100px; margin: 0 auto; padding: 0 48px 96px;">
+  <div style="max-width:1100px; margin: 0 auto; padding: 0 48px 96px;" class="pool-photos-wrap">
     <div class="pool-photos">
       <img src="IMG-20250605-WA0030.jpg" alt="Pool and valley view through the pergola at golden hour">
       <img src="PXL_20250126_191449901.jpg" alt="Pool with striped loungers and lush garden">
@@ -426,7 +441,8 @@ body.lang-es .es.inline-block { display: inline-block; }
           <div class="rate-row"><span class="en">Low season</span><span class="es">Temporada baja</span><span>$140 / night</span></div>
           <div class="rate-row"><span class="en">High season</span><span class="es">Temporada alta</span><span>$210 / night</span></div>
           <div class="rate-row"><span class="en">Cleaning fee</span><span class="es">Limpieza</span><span>$60 / stay</span></div>
-          <div class="rate-row"><span class="en">Minimum stay</span><span class="es">Estadía mínima</span><span class="en">3 nights</span><span class="es">3 noches</span></div>
+          <div class="rate-row"><span class="en">Minimum stay</span><span class="es">Estadía mínima</span><span style="color:var(--white);font-weight:500;" class="en">3 nights</span><span style="color:var(--white);font-weight:500;" class="es">3 noches</span></div>
+          <div class="rate-row"><span class="en">Monthly rate</span><span class="es">Tarifa mensual</span><span style="color:var(--white);font-weight:500;" class="en">On request</span><span style="color:var(--white);font-weight:500;" class="es">A consultar</span></div>
           <div class="rate-row"><span class="en">Maximum guests</span><span class="es">Máximo de huéspedes</span><span>4</span></div>
         </div>
         <a href="mailto:quintasierras@gmail.com" class="btn-book-cta en">Email to Book</a>
@@ -452,33 +468,45 @@ body.lang-es .es.inline-block { display: inline-block; }
     <p class="lead es">El Barrio Paso de Piedra está estratégicamente ubicado entre lo mejor de las Sierras — todo conectado por autopista, con solo 10 minutos de camino pintoresco hasta la propiedad. Carnicería, vinoteca y quesos y un mercado a pocos kilómetros.</p>
     <div class="location-grid">
       <div class="location-card">
-        <div class="location-card-dist en">20 min</div>
-        <div class="location-card-dist es">20 min</div>
-        <div class="location-card-title">Carlos Paz</div>
-        <div class="location-card-desc en">The Sierra's most lively town — restaurants, lake, nightlife, and all services.</div>
-        <div class="location-card-desc es">La ciudad más animada de las Sierras — restaurantes, lago, vida nocturna y todos los servicios.</div>
+        <img src="https://quinta-sierras.vercel.app/carlos-paz.jpg" alt="Villa Carlos Paz lake">
+        <div class="location-card-body">
+          <div class="location-card-dist en">20 min</div>
+          <div class="location-card-dist es">20 min</div>
+          <div class="location-card-title">Carlos Paz</div>
+          <div class="location-card-desc en">The Sierra's most lively town — restaurants, lake, nightlife, and all services.</div>
+          <div class="location-card-desc es">La ciudad más animada de las Sierras — restaurantes, lago, vida nocturna y todos los servicios.</div>
+        </div>
       </div>
       <div class="location-card">
-        <div class="location-card-dist en">30 min</div>
-        <div class="location-card-dist es">30 min</div>
-        <div class="location-card-title en">Córdoba City & Airport</div>
-        <div class="location-card-title es">Ciudad y Aeropuerto</div>
-        <div class="location-card-desc en">Argentina's second city — fine dining, museums, and the bohemian Barrio Güemes. International airport also 30 min.</div>
-        <div class="location-card-desc es">La segunda ciudad de Argentina — gastronomía, museos y el bohemio Barrio Güemes. Aeropuerto internacional también a 30 min.</div>
+        <img src="https://lp-cms-production.imgix.net/2019-06/4ac1cc884e3a68d4860576c1622c8ade-cordoba.jpg?auto=format,compress&q=72&w=800&fit=crop&ar=912:550" alt="Córdoba city">
+        <div class="location-card-body">
+          <div class="location-card-dist en">30 min</div>
+          <div class="location-card-dist es">30 min</div>
+          <div class="location-card-title en">Córdoba City & Airport</div>
+          <div class="location-card-title es">Ciudad y Aeropuerto</div>
+          <div class="location-card-desc en">Argentina's second city — fine dining, museums, and the bohemian Barrio Güemes. International airport also 30 min.</div>
+          <div class="location-card-desc es">La segunda ciudad de Argentina — gastronomía, museos y el bohemio Barrio Güemes. Aeropuerto internacional también a 30 min.</div>
+        </div>
       </div>
       <div class="location-card">
-        <div class="location-card-dist en">40 min</div>
-        <div class="location-card-dist es">40 min</div>
-        <div class="location-card-title">Alta Gracia</div>
-        <div class="location-card-desc en">UNESCO World Heritage Jesuit estancia and one of Argentina's most beautiful colonial cities.</div>
-        <div class="location-card-desc es">Estancia jesuítica Patrimonio de la Humanidad UNESCO y una de las ciudades coloniales más bellas de Argentina.</div>
+        <img src="https://quinta-sierras.vercel.app/alta-gracia.jpg" alt="Alta Gracia Jesuit estancia">
+        <div class="location-card-body">
+          <div class="location-card-dist en">40 min</div>
+          <div class="location-card-dist es">40 min</div>
+          <div class="location-card-title">Alta Gracia</div>
+          <div class="location-card-desc en">UNESCO World Heritage Jesuit estancia and one of Argentina's most beautiful colonial cities.</div>
+          <div class="location-card-desc es">Estancia jesuítica Patrimonio de la Humanidad UNESCO y una de las ciudades coloniales más bellas de Argentina.</div>
+        </div>
       </div>
       <div class="location-card">
-        <div class="location-card-dist en">40 min</div>
-        <div class="location-card-dist es">40 min</div>
-        <div class="location-card-title">San Clemente</div>
-        <div class="location-card-desc en">Beautiful river spots over the other side of the sierra. Outstanding traditional empanadas at Amigos de San Clemente.</div>
-        <div class="location-card-desc es">Hermosos rincones del río al otro lado de la sierra. Empanadas tradicionales excelentes en Amigos de San Clemente.</div>
+        <img src="https://quinta-sierras.vercel.app/san-clemente-river.jpg" alt="San Clemente river">
+        <div class="location-card-body">
+          <div class="location-card-dist en">40 min</div>
+          <div class="location-card-dist es">40 min</div>
+          <div class="location-card-title">San Clemente</div>
+          <div class="location-card-desc en">Beautiful river spots over the other side of the sierra. Outstanding traditional empanadas at Amigos de San Clemente.</div>
+          <div class="location-card-desc es">Hermosos rincones del río al otro lado de la sierra. Empanadas tradicionales excelentes en Amigos de San Clemente.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -490,7 +518,7 @@ body.lang-es .es.inline-block { display: inline-block; }
     <div class="section-label" style="color:var(--sand-light);">Guest Reviews</div>
     <p style="font-family:var(--sans);font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:48px;max-width:400px;" class="en">From Airbnb guests — translated where shown.</p>
     <p style="font-family:var(--sans);font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:48px;max-width:400px;" class="es">Opiniones de huéspedes de Airbnb.</p>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <div class="reviews-grid">
       <div style="background:rgba(255,255,255,0.06);padding:32px;border-radius:2px;border-top:2px solid var(--sand);">
         <p style="font-family:var(--serif);font-size:15px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.75;margin-bottom:20px;">"The house is incredible — well designed with great taste. The outdoor shower by the pool has hot water, a beautiful detail. Privileged views of the sierras from almost every corner of the property. Garrett was an excellent host, always kind and attentive. We will definitely return."</p>
         <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--sand-light);">Feli · Córdoba</div>
