@@ -3,230 +3,201 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quinta Sierras — Private Retreat · Córdoba, Argentina</title>
-<meta name="description" content="A private hillside retreat with pool and panoramic views in the Córdoba Sierras, Argentina. 4 guests · 3 night minimum.">
+<title>Quinta Sierras — Private Villa · Córdoba Sierras, Argentina</title>
+<meta name="description" content="A private hillside villa with infinity pool and panoramic views in the Córdoba Sierras, Argentina. 4 guests · 3 night minimum.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 :root {
-  --cream: #FAF8F4;
-  --sand: #9B8165;
-  --sand-light: #C8B49A;
-  --sand-pale: #EDE6DA;
-  --charcoal: #1C1C1A;
-  --gray: #6B6560;
-  --gray-light: #E8E2D9;
-  --white: #FFFFFF;
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans: 'Inter', system-ui, sans-serif;
+  --white: #ffffff;
+  --off-white: #F8F7F4;
+  --black: #111110;
+  --gray: #6B6860;
+  --gray-light: #E4E2DC;
+  --gray-mid: #9B9890;
+  --logo: 'Cormorant Garamond', Georgia, serif;
+  --serif: 'DM Sans', system-ui, sans-serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--sans); color: var(--charcoal); background: var(--cream); line-height: 1.7; }
+body { font-family: var(--sans); color: var(--black); background: var(--white); line-height: 1.7; }
 
 /* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 0 48px; height: 68px;
-  background: rgba(250,248,244,0.94); backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(155,129,101,0.15);
-  transition: all 0.3s;
+  padding: 0 40px; height: 60px;
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-light);
+  transition: box-shadow 0.3s;
 }
-.nav-logo { font-family: var(--serif); font-size: 20px; font-weight: 400; letter-spacing: 0.04em; color: var(--charcoal); text-decoration: none; }
-.nav-logo em { font-style: italic; color: var(--sand); }
-.nav-links { display: flex; gap: 32px; align-items: center; }
-.nav-links a { font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--charcoal); }
-.nav-right { display: flex; gap: 16px; align-items: center; }
-.lang-toggle { display: flex; gap: 0; border: 1px solid var(--gray-light); border-radius: 4px; overflow: hidden; }
-.lang-btn { font-family: var(--sans); font-size: 11px; padding: 5px 10px; background: transparent; border: none; cursor: pointer; color: var(--gray); letter-spacing: 0.06em; transition: all 0.2s; }
-.lang-btn.active { background: var(--sand); color: var(--white); }
-.btn-book-nav { font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 22px; background: var(--charcoal); color: var(--white); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; transition: background 0.2s; }
-.btn-book-nav:hover { background: #333; }
+.nav-logo { font-family: var(--logo); font-size: 18px; font-weight: 400; letter-spacing: 0.03em; color: var(--black); text-decoration: none; }
+.nav-logo em { font-style: italic; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--black); }
+.nav-right { display: flex; gap: 14px; align-items: center; }
+.lang-toggle { display: flex; }
+.lang-btn { font-family: var(--sans); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px; background: transparent; border: 1px solid var(--gray-light); cursor: pointer; color: var(--gray); transition: all 0.2s; }
+.lang-btn:first-child { border-right: none; border-radius: 2px 0 0 2px; }
+.lang-btn:last-child { border-radius: 0 2px 2px 0; }
+.lang-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+.btn-book-nav { font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 9px 20px; background: var(--black); color: var(--white); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
+.btn-book-nav:hover { opacity: 0.75; }
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); }
-.mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--gray-light); z-index: 99; padding: 16px 0; }
+.hamburger span { display: block; width: 20px; height: 1px; background: var(--black); }
+.mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--gray-light); z-index: 99; padding: 12px 0; }
 .mobile-menu.open { display: block; }
-.mobile-menu a, .mobile-menu button { display: block; font-family: var(--sans); font-size: 13px; padding: 12px 32px; text-decoration: none; color: var(--charcoal); letter-spacing: 0.06em; text-transform: uppercase; background: none; border: none; cursor: pointer; width: 100%; text-align: left; }
-@media (max-width: 768px) {
-  nav { padding: 0 24px; }
-  .nav-links { display: none; }
-  .nav-right { gap: 12px; }
-  .hamburger { display: flex; }
-}
+.mobile-menu a { display: block; font-family: var(--sans); font-size: 12px; padding: 11px 32px; text-decoration: none; color: var(--black); letter-spacing: 0.08em; text-transform: uppercase; }
+@media (max-width: 768px) { nav { padding: 0 24px; } .nav-links { display: none; } .hamburger { display: flex; } }
 @media (max-width: 480px) { .btn-book-nav { display: none; } }
 
 /* ── HERO ── */
-.hero {
-  height: 100vh; min-height: 600px; position: relative;
-  display: flex; align-items: flex-end;
-  background: #1a1a18;
-}
-.hero-img {
-  position: absolute; inset: 0;
-  background: url('house-exterior.jpg') center 60%/cover no-repeat;
-  opacity: 0.92;
-  filter: contrast(1.05) saturate(1.05);
-}
-.hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(20,18,15,0.80) 0%, rgba(20,18,15,0.45) 40%, rgba(20,18,15,0.25) 70%, rgba(20,18,15,0.15) 100%);
-}
-.hero-inner {
-  position: relative; max-width: 1100px; margin: 0 auto;
-  padding: 0 48px 80px; color: var(--white); width: 100%;
-}
-.hero-eyebrow { font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
-.hero h1 { font-family: var(--serif); font-size: clamp(44px, 6vw, 86px); font-weight: 300; line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 16px; }
+.hero { height: 100vh; min-height: 580px; position: relative; display: flex; flex-direction: column; justify-content: flex-end; }
+.hero-img { position: absolute; inset: 0; background: url('house-dusk.avif') center center/cover no-repeat; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.15) 100%); }
+.hero-inner { position: relative; max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 40px 60px; color: var(--white); }
+.hero-location { font-family: var(--sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px; }
+.hero h1 { font-family: var(--logo); font-size: clamp(52px, 7vw, 100px); font-weight: 300; line-height: 0.92; letter-spacing: -0.02em; }
 .hero h1 em { font-style: italic; }
-.hero-sub { font-family: var(--sans); font-size: 14px; color: rgba(255,255,255,0.65); letter-spacing: 0.04em; margin-bottom: 40px; max-width: 480px; line-height: 1.6; }
-.hero-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
-.hero-pill { font-family: var(--sans); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 14px; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; color: rgba(255,255,255,0.8); }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-primary { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 36px; background: var(--white); color: var(--charcoal); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
-.btn-primary:hover { background: var(--sand-pale); }
-.btn-ghost { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.35); border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
-.btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
-@media (max-width: 600px) {
-  .hero-inner { padding: 0 24px 56px; }
-  .hero h1 { font-size: 42px; }
-}
+@media (max-width: 600px) { .hero-inner { padding: 0 24px 48px; } }
 
-/* ── SECTIONS ── */
-.section { max-width: 1100px; margin: 0 auto; padding: 96px 48px; }
-@media (max-width: 600px) { .section { padding: 64px 24px; } }
-.section-alt { background: var(--sand-pale); }
-.section-label { font-family: var(--sans); font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--sand); margin-bottom: 12px; }
-h2 { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 46px); font-weight: 300; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 20px; }
-h2 em { font-style: italic; }
-p.lead { font-family: var(--serif); font-size: 18px; line-height: 1.8; color: var(--gray); max-width: 680px; font-weight: 300; }
+/* ── INTRO + SIDEBAR ── */
+.intro-wrap { border-top: 1px solid var(--gray-light); }
+.intro-section { max-width: 1200px; margin: 0 auto; padding: 112px 40px; display: grid; grid-template-columns: 1fr 340px; gap: 80px; align-items: start; }
+@media (max-width: 960px) { .intro-section { grid-template-columns: 1fr; gap: 56px; } }
+@media (max-width: 600px) { .intro-section { padding: 56px 24px; } }
 
-/* ── FEATURES ── */
-.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gray-light); margin-top: 56px; }
-@media (max-width: 768px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .features-grid { grid-template-columns: 1fr; } }
-.feature { background: var(--cream); padding: 36px 28px; }
-.feature-icon { font-size: 26px; margin-bottom: 16px; }
-.feature-title { font-family: var(--serif); font-size: 19px; font-weight: 400; color: var(--charcoal); margin-bottom: 6px; }
-.feature-desc { font-family: var(--sans); font-size: 13px; color: var(--gray); line-height: 1.6; }
+.section-label { font-family: var(--sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 16px; }
+.section-title { font-family: var(--sans); font-size: clamp(30px, 4vw, 50px); font-weight: 200; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 28px; }
+.section-title em { font-style: normal; font-weight: 300; }
+.body-serif { font-family: var(--sans); font-size: 16px; line-height: 1.85; color: #555; font-weight: 300; }
+.body-serif p + p { margin-top: 18px; }
 
-/* ── GALLERY ── */
-/* CSS columns masonry — images display at full natural height, zero cropping. */
-.gallery-masonry {
-  columns: 2;
-  column-gap: 8px;
-  margin-top: 48px;
-}
-.gallery-masonry img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin-bottom: 8px;
-  break-inside: avoid;
-}
-@media (max-width: 640px) {
-  .gallery-masonry { columns: 1; }
-}
+/* ── SPECS SIDEBAR ── */
+.specs-sidebar { border-top: 2px solid var(--black); padding-top: 24px; position: sticky; top: 80px; }
+.spec-row { padding: 13px 0; border-bottom: 1px solid var(--gray-light); }
+.spec-label { font-family: var(--sans); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 4px; }
+.spec-value { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--black); line-height: 1.5; }
+.spec-value em { font-style: normal; }
+.sidebar-cta { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+.btn-black { display: block; text-align: center; font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 24px; background: var(--black); color: var(--white); text-decoration: none; border-radius: 2px; transition: opacity 0.2s; }
+.btn-black:hover { opacity: 0.75; }
+.btn-outline { display: block; text-align: center; font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 24px; background: transparent; color: var(--black); border: 1px solid var(--gray-light); text-decoration: none; border-radius: 2px; transition: border-color 0.2s; }
+.btn-outline:hover { border-color: var(--black); }
+
+/* ── IMAGES ── */
+.full-img { width: 100%; height: auto; display: block; }
+.full-img-hero { width: 100%; height: auto; display: block; }
+.two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; align-items: start; }
+.two-up img { width: 100%; height: auto; display: block; }
+.three-up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; align-items: start; }
+.three-up img { width: 100%; height: auto; display: block; }
+@media (max-width: 640px) { .two-up { grid-template-columns: 1fr; } .three-up { grid-template-columns: 1fr 1fr; } }
+
+/* ── SCROLL SCALE ── */
+.img-scale-wrap { overflow: hidden; }
+.img-scale-wrap img { display: block; width: 100%; height: auto; will-change: transform; transform: scale(1.12); }
+.img-scale-wrap.in-view img { transform: scale(1.0); transition: transform 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+/* ── GALLERY HOVER SCALE ── */
+.gallery-cell { overflow: hidden; }
+.gallery-cell img { display: block; width: 100%; height: auto; transform: scale(1.0); transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.gallery-cell img:hover { transform: scale(1.06); }
+
+/* ── EDITORIAL ── */
+.editorial { max-width: 720px; margin: 0 auto; padding: 112px 40px; }
+@media (max-width: 600px) { .editorial { padding: 72px 24px; } }
+
+/* ── PULL QUOTE ── */
+.pull-quote { border-top: 1px solid var(--gray-light); border-bottom: 1px solid var(--gray-light); padding: 120px 40px; text-align: center; }
+.pull-quote blockquote { font-family: var(--sans); font-size: clamp(20px, 2.5vw, 32px); font-weight: 200; font-style: normal; line-height: 1.6; max-width: 800px; margin: 0 auto 24px; color: var(--black); letter-spacing: -0.01em; }
+.pull-quote cite { font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-mid); font-style: normal; }
+@media (max-width: 600px) { .pull-quote { padding: 64px 24px; } }
 
 /* ── AMENITIES ── */
-.amenities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 48px; }
+.amenities-wrap { max-width: 1200px; margin: 0 auto; padding: 0 40px 80px; }
+@media (max-width: 600px) { .amenities-wrap { padding: 0 24px 64px; } }
+.amenities-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--gray-light); }
 @media (max-width: 640px) { .amenities-grid { grid-template-columns: 1fr 1fr; } }
-.amenity { padding: 20px 0; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 12px; }
-.amenity-icon { font-size: 18px; width: 28px; flex-shrink: 0; }
-.amenity-text { font-family: var(--sans); font-size: 13px; color: var(--gray); }
+.amenity { padding: 15px 0; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 10px; }
+.amenity-icon { font-size: 15px; width: 22px; flex-shrink: 0; color: var(--gray-mid); }
+.amenity-text { font-family: var(--sans); font-size: 12px; color: var(--gray); }
 
-/* ── POOL PHOTOS ── */
-/* Two photos side by side, natural height — no cropping. */
-.pool-photos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 40px;
-  align-items: start;
-}
-.pool-photos img { width: 100%; height: auto; display: block; }
-@media (max-width: 640px) {
-  .pool-photos { grid-template-columns: 1fr; }
-}
+/* ── TIPS ── */
+.tips-section { background: var(--off-white); padding: 112px 0; }
+.tips-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+@media (max-width: 600px) { .tips-inner { padding: 0 24px; } }
+.tips-header { margin-bottom: 48px; }
+.tip-item { display: grid; grid-template-columns: 72px 1fr; gap: 24px; padding: 28px 0; border-top: 1px solid var(--gray-light); align-items: start; }
+@media (max-width: 600px) { .tip-item { grid-template-columns: 48px 1fr; gap: 16px; } }
+.tip-num { font-family: var(--sans); font-size: 10px; letter-spacing: 0.1em; color: var(--gray-mid); padding-top: 4px; }
+.tip-title { font-family: var(--sans); font-size: 18px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 8px; }
+.tip-body { font-family: var(--sans); font-size: 13px; color: var(--gray); line-height: 1.75; }
 
-/* ── ROOMS STRIP ── */
-/* Three photos side by side, natural height — no cropping. */
-.rooms-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  align-items: start;
-}
-.rooms-strip img { width: 100%; height: auto; display: block; }
-@media (max-width: 640px) {
-  .rooms-strip { grid-template-columns: 1fr 1fr; }
-}
-
-/* ── SPLIT SECTION (Rates) ── */
-.split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch; }
-@media (max-width: 768px) { .split { grid-template-columns: 1fr; } }
-.split-img { overflow: hidden; min-height: 480px; }
-.split-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 70%; display: block; }
-.split-content { padding: 72px 56px; display: flex; flex-direction: column; justify-content: center; background: var(--charcoal); color: var(--white); }
-@media (max-width: 600px) { .split-content { padding: 48px 28px; } }
+/* ── NEARBY ── */
+.nearby-section { max-width: 1200px; margin: 0 auto; padding: 80px 40px; }
+@media (max-width: 600px) { .nearby-section { padding: 56px 24px; } }
+.nearby-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 32px; margin-top: 48px; }
+@media (max-width: 640px) { .nearby-grid { grid-template-columns: 1fr; gap: 32px; } }
+.nearby-card img { width: 100%; height: auto; display: block; margin-bottom: 16px; }
+.nearby-dist { font-family: var(--sans); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 4px; }
+.nearby-name { font-family: var(--sans); font-size: 20px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 6px; }
+.nearby-desc { font-family: var(--sans); font-size: 12px; color: var(--gray); line-height: 1.7; }
 
 /* ── RATES ── */
-.rates-box { margin-top: 48px; }
-.rate-main { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
-.rate-amount { font-family: var(--serif); font-size: 64px; font-weight: 300; color: var(--white); line-height: 1; }
-.rate-unit { font-family: var(--sans); font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; }
-.rate-note { font-family: var(--sans); font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 32px; letter-spacing: 0.04em; }
-.rate-details { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
-.rate-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: var(--sans); font-size: 13px; }
-.rate-row span:first-child { color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
-.rate-row span:last-child { color: var(--white); font-weight: 500; }
-.btn-book-cta { display: inline-block; font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; padding: 16px 40px; background: var(--white); color: var(--charcoal); border: none; border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.2s; margin-top: 8px; }
-.btn-book-cta:hover { background: var(--sand-pale); }
-.btn-whatsapp { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 28px; background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; text-decoration: none; transition: all 0.2s; }
-.btn-whatsapp:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+.rates-section { background: var(--off-white); border-top: 1px solid var(--gray-light); }
+.rates-inner { max-width: 1200px; margin: 0 auto; padding: 80px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+@media (max-width: 768px) { .rates-inner { grid-template-columns: 1fr; gap: 48px; } }
+@media (max-width: 600px) { .rates-inner { padding: 56px 24px; } }
+.rate-big { font-family: var(--sans); font-size: 80px; font-weight: 200; line-height: 1; letter-spacing: -0.03em; }
+.rate-sub { font-family: var(--sans); font-size: 12px; letter-spacing: 0.06em; color: var(--gray-mid); margin-top: 6px; margin-bottom: 32px; }
+.rate-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--gray-light); }
+.rate-row span { font-family: var(--sans); font-size: 13px; font-weight: 300; color: var(--gray); }
+.rates-img img { width: 100%; height: auto; display: block; }
 
-/* ── LOCATION ── */
-.location-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
-@media (max-width: 640px) { .location-grid { grid-template-columns: 1fr; } }
-.location-card { background: var(--white); border: 1px solid var(--gray-light); overflow: hidden; }
-.location-card-body { padding: 24px 28px; }
-.location-card-dist { font-family: var(--sans); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sand); margin-bottom: 6px; }
-.location-card-title { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--charcoal); margin-bottom: 6px; }
-.location-card-desc { font-family: var(--sans); font-size: 13px; color: var(--gray); line-height: 1.6; }
-.location-card img { width: 100%; height: 160px; object-fit: cover; display: block; }
-
-/* ── BOOKING ── */
-.booking-section { background: var(--sand-pale); padding: 96px 0; text-align: center; }
-.booking-inner { max-width: 640px; margin: 0 auto; padding: 0 24px; }
-.booking-section h2 { font-family: var(--serif); font-size: clamp(32px, 4vw, 52px); font-weight: 300; margin-bottom: 16px; }
-.booking-section .lead { font-family: var(--sans); font-size: 15px; color: var(--gray); margin: 0 auto 40px; max-width: 440px; line-height: 1.7; }
-
-/* ── FOOTER ── */
-footer { background: var(--charcoal); color: rgba(255,255,255,0.55); padding: 48px; }
-.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
-.footer-brand { font-family: var(--serif); font-size: 18px; color: rgba(255,255,255,0.8); }
-.footer-brand em { font-style: italic; color: var(--sand-light); }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { font-family: var(--sans); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: rgba(255,255,255,0.8); }
-.footer-copy { font-family: var(--sans); font-size: 11px; color: rgba(255,255,255,0.25); }
-@media (max-width: 600px) { footer { padding: 36px 24px; } .footer-inner { flex-direction: column; align-items: flex-start; } }
+/* ── GALLERY ── */
+.gallery-header { max-width: 1200px; margin: 0 auto; padding: 80px 40px 32px; }
+@media (max-width: 600px) { .gallery-header { padding: 56px 24px 24px; } }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+@media (max-width: 960px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+.gallery-grid img { width: 100%; height: auto; display: block; }
 
 /* ── REVIEWS ── */
-.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-@media (max-width: 768px) { .reviews-grid { grid-template-columns: 1fr; } }
+.reviews-section { background: var(--black); padding: 88px 0; }
+.reviews-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+@media (max-width: 600px) { .reviews-inner { padding: 0 24px; } }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 40px; }
+@media (max-width: 768px) { .reviews-grid { grid-template-columns: 1fr; gap: 2px; } }
+.review-item { padding: 32px; background: rgba(255,255,255,0.05); }
+.review-text { font-family: var(--sans); font-size: 14px; font-weight: 300; font-style: normal; color: rgba(255,255,255,0.82); line-height: 1.85; margin-bottom: 20px; }
+.review-author { font-family: var(--sans); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
 
-/* ── MOBILE FIXES ── */
-@media (max-width: 640px) {
-  .pool-photos-wrap { padding: 0 24px 64px !important; }
-  #rates > div { padding: 64px 24px !important; }
-}
+/* ── BOOK CTA ── */
+.book-section { max-width: 680px; margin: 0 auto; padding: 96px 40px; text-align: center; }
+@media (max-width: 600px) { .book-section { padding: 64px 24px; } }
+.book-section h2 { font-family: var(--sans); font-size: clamp(38px, 5vw, 64px); font-weight: 200; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 16px; }
+.book-section h2 em { font-style: normal; font-weight: 300; }
+.book-section p { font-family: var(--sans); font-size: 14px; color: var(--gray); margin: 0 auto 40px; max-width: 400px; line-height: 1.7; }
+.book-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-book-lg { font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 36px; background: var(--black); color: var(--white); text-decoration: none; border-radius: 2px; transition: opacity 0.2s; }
+.btn-book-lg:hover { opacity: 0.75; }
+.btn-wa { font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; background: transparent; color: var(--black); border: 1px solid var(--gray-light); text-decoration: none; border-radius: 2px; transition: border-color 0.2s; }
+.btn-wa:hover { border-color: var(--black); }
 
-/* ── SCROLL REVEAL ── */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: none; }
+/* ── FOOTER ── */
+footer { background: var(--black); color: rgba(255,255,255,0.45); padding: 48px 40px; }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+.footer-brand { font-family: var(--logo); font-size: 18px; color: rgba(255,255,255,0.82); }
+.footer-brand em { font-style: italic; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-family: var(--sans); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: rgba(255,255,255,0.8); }
+.footer-copy { font-family: var(--sans); font-size: 10px; color: rgba(255,255,255,0.2); }
+@media (max-width: 600px) { footer { padding: 36px 24px; } .footer-inner { flex-direction: column; align-items: flex-start; } }
 
 /* ── LANGUAGE ── */
 .es { display: none; }
@@ -234,16 +205,20 @@ body.lang-es .en { display: none; }
 body.lang-es .es { display: revert; }
 body.lang-es .es.flex { display: flex; }
 body.lang-es .es.grid { display: grid; }
-body.lang-es .es.inline-block { display: inline-block; }
-/* Explicit nav button visibility — belt and braces */
+body.lang-es .es.block { display: block; }
 body:not(.lang-es) .btn-book-nav.en { display: inline-block; }
 body.lang-es .btn-book-nav.es { display: inline-block; }
 body:not(.lang-es) .btn-book-nav.es { display: none; }
 body.lang-es .btn-book-nav.en { display: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">Quinta <em>Sierras</em></a>
   <div class="nav-links">
@@ -276,289 +251,358 @@ body.lang-es .btn-book-nav.en { display: none; }
   <a href="mailto:quintasierras@gmail.com" onclick="closeMenu()" class="es">Reservar</a>
 </div>
 
-<!-- HERO — exterior Airbnb photo, sets the location -->
+<!-- HERO -->
 <div class="hero">
   <div class="hero-img"></div>
   <div class="hero-overlay"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow en">Barrio Paso de Piedra · Córdoba, Argentina</div>
-    <div class="hero-eyebrow es">Barrio Paso de Piedra · Córdoba, Argentina</div>
+    <div class="hero-location">Barrio Paso de Piedra · Córdoba, Argentina</div>
     <h1 class="en">Quinta<br><em>Sierras</em></h1>
     <h1 class="es">Quinta<br><em>Sierras</em></h1>
-    <p class="hero-sub en">A private hillside retreat with panoramic views, pool, and native forest — 30 minutes from Córdoba city.</p>
-    <p class="hero-sub es">Un refugio privado en la ladera de las sierras con vistas panorámicas, pileta y monte nativo — a 30 minutos de la ciudad de Córdoba.</p>
-    <div class="hero-pills">
-      <span class="hero-pill en">4 Guests</span>
-      <span class="hero-pill es">4 Huéspedes</span>
-      <span class="hero-pill en">Private Pool</span>
-      <span class="hero-pill es">Pileta Privada</span>
-      <span class="hero-pill en">3-Night Minimum</span>
-      <span class="hero-pill es">Mínimo 3 Noches</span>
-      <span class="hero-pill en">Panoramic Views</span>
-      <span class="hero-pill es">Vistas Panorámicas</span>
-    </div>
-    <div class="hero-actions">
-      <a href="mailto:quintasierras@gmail.com" class="btn-primary en">Book Your Stay</a>
-      <a href="mailto:quintasierras@gmail.com" class="btn-primary es">Reservar</a>
-      <a href="#gallery" class="btn-ghost en">View Gallery</a>
-      <a href="#gallery" class="btn-ghost es">Ver Galería</a>
-    </div>
   </div>
 </div>
 
-<!-- INTRO -->
-<div id="about">
-  <div class="section reveal">
-    <div class="section-label en">The Property</div>
-    <div class="section-label es">La Propiedad</div>
-    <h2 class="en">Perched above the<br><em>Córdoba plains</em></h2>
-    <h2 class="es">Sobre la llanura<br><em>cordobesa</em></h2>
-    <p class="lead en">A secluded private villa with pool in the Sierras de Córdoba. Panoramic valley views, sunrises, and star-filled skies. Located in a secure gated community with no visible neighbours and total privacy. Two bedrooms, two bathrooms — one with an antique clawfoot tub, another with an outdoor rain shower under the stars. A wood stove for cool evenings, a covered quincho for long Argentine dinners, and a pool perched above the valley. A mountain retreat blending modern comfort and country charm — explore by day, then relax with a swim, sunset wine, or a fire. All highway connected: Carlos Paz in 20 minutes, Córdoba city and airport in 30, Alta Gracia and San Clemente in 40. Everything you need to arrive and relax.</p>
-    <p class="lead es">Una villa privada y apartada con pileta en las Sierras de Córdoba. Vistas panorámicas al valle, amaneceres y cielos estrellados. Ubicada en un barrio privado cerrado sin vecinos a la vista, con total privacidad. Dos dormitorios, dos baños — uno con bañadera antigua, otro con ducha exterior bajo las estrellas. Hogar a leña para las noches frescas, quincho techado para largas cenas argentinas, y una pileta suspendida sobre el valle. Un refugio de montaña que combina confort moderno y encanto de campo — explorá de día, y relajate con un baño, vino al atardecer o una fogata. Todo por autopista: Carlos Paz a 20 minutos, Córdoba ciudad y aeropuerto a 30, Alta Gracia y San Clemente a 40. Todo lo que necesitás para llegar y descansar.</p>
-    <div class="features-grid" style="margin-top:56px;">
-      <div class="feature">
-        <div class="feature-icon">○</div>
-        <div class="feature-title en">Private Pool</div>
-        <div class="feature-title es">Pileta Privada</div>
-        <div class="feature-desc en">Infinity-edge pool with panoramic views across the valley. Fully automated filtration. Fully private and enclosed — swimwear optional.</div>
-        <div class="feature-desc es">Pileta con vistas panorámicas al valle. Filtración completamente automática. Totalmente privada — sin código de vestimenta.</div>
+<!-- INTRO + SPECS SIDEBAR -->
+<div class="intro-wrap">
+  <div class="intro-section reveal">
+
+    <!-- LEFT: editorial prose -->
+    <div>
+      <div class="section-label en">The Property</div>
+      <div class="section-label es">La Propiedad</div>
+      <h2 class="section-title en">A private hillside retreat<br>above the <em>Córdoba plains</em></h2>
+      <h2 class="section-title es">Un refugio privado<br>sobre la <em>llanura cordobesa</em></h2>
+      <div class="body-serif en">
+        <p>A secluded private villa with pool in the Sierras de Córdoba. Panoramic valley views, sunrises, and star-filled skies. Located in a secure gated community with no visible neighbours and total privacy.</p>
+        <p>Two bedrooms, two bathrooms — one with an antique clawfoot tub, another with an outdoor rain shower under the stars. A wood stove for cool evenings, a covered quincho for long Argentine dinners, and a pool perched above the valley.</p>
+        <p>All highway connected: Carlos Paz in 20 minutes, Córdoba city and airport in 30, Alta Gracia and San Clemente in 40. Everything you need to arrive and relax.</p>
       </div>
-      <div class="feature">
-        <div class="feature-icon">◻</div>
-        <div class="feature-title en">The Quincho</div>
-        <div class="feature-title es">El Quincho</div>
-        <div class="feature-desc en">Covered outdoor dining and living with a gas grill — built for long Argentine evenings.</div>
-        <div class="feature-desc es">Comedor y living exterior techado con parrilla a gas — diseñado para largas noches argentinas.</div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">△</div>
-        <div class="feature-title en">Views & Nature</div>
-        <div class="feature-title es">Vistas y Naturaleza</div>
-        <div class="feature-desc en">Native forest surrounds the property. Birds, clear skies, and open horizons in every direction.</div>
-        <div class="feature-desc es">Monte nativo rodea la propiedad. Pájaros, cielos despejados y horizontes abiertos.</div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">◇</div>
-        <div class="feature-title en">Smart Home</div>
-        <div class="feature-title es">Casa Inteligente</div>
-        <div class="feature-desc en">Smart lighting, solar hot water, and Google Home controls — comfort without complexity.</div>
-        <div class="feature-desc es">Iluminación inteligente, agua caliente solar y controles Google Home — confort sin complicaciones.</div>
+      <div class="body-serif es">
+        <p>Una villa privada y apartada con pileta en las Sierras de Córdoba. Vistas panorámicas al valle, amaneceres y cielos estrellados. Ubicada en un barrio privado cerrado sin vecinos a la vista, con total privacidad.</p>
+        <p>Dos dormitorios, dos baños — uno con bañadera antigua, otro con ducha exterior bajo las estrellas. Hogar a leña para las noches frescas, quincho techado para largas cenas argentinas, y una pileta suspendida sobre el valle.</p>
+        <p>Todo por autopista: Carlos Paz a 20 minutos, Córdoba ciudad y aeropuerto a 30, Alta Gracia y San Clemente a 40. Todo lo que necesitás para llegar y descansar.</p>
       </div>
     </div>
+
+    <!-- RIGHT: specs sidebar -->
+    <div class="specs-sidebar">
+      <div class="spec-row">
+        <div class="spec-label en">Accommodation</div>
+        <div class="spec-label es">Tipo de Alojamiento</div>
+        <div class="spec-value en">Private villa with infinity pool</div>
+        <div class="spec-value es">Villa privada con pileta</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label en">Guests</div>
+        <div class="spec-label es">Huéspedes</div>
+        <div class="spec-value">Up to 4</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label en">Bedrooms & Bathrooms</div>
+        <div class="spec-label es">Dormitorios y Baños</div>
+        <div class="spec-value en">2 bedrooms, 2 bathrooms</div>
+        <div class="spec-value es">2 dormitorios, 2 baños</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label en">Location</div>
+        <div class="spec-label es">Ubicación</div>
+        <div class="spec-value">Barrio Paso de Piedra, Córdoba Sierras, Argentina</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label en">Setting</div>
+        <div class="spec-label es">Entorno</div>
+        <div class="spec-value en">Secluded hillside in a private gated community. No neighbours in sight, native forest, panoramic valley views.</div>
+        <div class="spec-value es">Ladera apartada en barrio privado. Sin vecinos a la vista, monte nativo, vistas panorámicas al valle.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label en">Minimum Stay</div>
+        <div class="spec-label es">Estadía Mínima</div>
+        <div class="spec-value en">3 nights</div>
+        <div class="spec-value es">3 noches</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label en">Signature Feature</div>
+        <div class="spec-label es">Característica Principal</div>
+        <div class="spec-value en"><em>An infinity-edge pool suspended above the Córdoba plains — total privacy, swimwear optional.</em></div>
+        <div class="spec-value es"><em>Una pileta de borde infinito sobre la llanura — total privacidad, sin código de vestimenta.</em></div>
+      </div>
+      <div class="sidebar-cta">
+        <a href="mailto:quintasierras@gmail.com" class="btn-black en">Email to Book</a>
+        <a href="mailto:quintasierras@gmail.com" class="btn-black es">Escribinos</a>
+        <a href="https://wa.me/543518749830" class="btn-outline en" target="_blank">WhatsApp Us</a>
+        <a href="https://wa.me/543518749830" class="btn-outline es" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- GALLERY
-     2-column grid, explicit pixel heights per row.
-     Portrait photos fill tall cells cleanly with object-fit: cover.
-     Row 1 (tall, 460px): steel-frame windows view | daytime interior
-     Row 2 (short, 300px): night interior | quincho
--->
-<div id="gallery" class="section-alt">
-  <div class="section reveal">
-    <div class="section-label en">Gallery</div>
-    <div class="section-label es">Galería</div>
-    <h2 class="en">The <em>spaces</em></h2>
-    <h2 class="es">Los <em>espacios</em></h2>
-    <div class="gallery-masonry">
-      <img src="house-exterior.jpg" alt="Quinta Sierras — house and pool exterior">
-      <img src="house-dusk.avif" alt="House exterior at dusk — steel-frame windows glowing at twilight">
-      <img src="house-overview.jpg" alt="Quinta Sierras — house, pool and view at dusk">
-      <img src="airbnb-aerial.jpg" alt="Aerial view of house and pool">
-      <img src="living-room-stove.avif" alt="Open-plan living and dining room with wood stove and valley views">
-      <img src="PXL_20250409_190232782.jpg" alt="Living room with wood stove and open kitchen">
-      <img src="PXL_20251203_133016307.jpg" alt="View through steel-frame windows to terrace and valley">
-      <img src="PXL_20251216_112250440.jpg" alt="Garden and pool with native forest and valley views">
-      <img src="PXL_20250627_165946938.jpg" alt="Quincho outdoor living and dining area">
-      <img src="PXL_20231112_233014294.jpg" alt="Interior at night — fireplace and butterfly chairs">
-      <img src="PXL_20250320_175830160.jpg" alt="Quincho terrace with sofa and stone floor">
-      <img src="still-life.jpg" alt="Kitchen still life with valley view">
-      <img src="tree-allee.jpg" alt="Tree-lined entrance road to Barrio Paso de Piedra">
-    </div>
+<!-- SIDE-BY-SIDE: exterior + interior, edge to edge, no crop -->
+<div class="img-scale-wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+  <img src="house-exterior.jpg" alt="House and pool exterior" style="width:100%;height:auto;display:block;">
+  <img src="living-room-stove.avif" alt="Open-plan living room with wood stove at golden hour" style="width:100%;height:auto;display:block;">
+</div>
+
+<!-- POOL EDITORIAL -->
+<div class="editorial reveal">
+  <div class="section-label en">The Pool</div>
+  <div class="section-label es">La Pileta</div>
+  <h2 class="section-title en">Swim above<br><em>the valley</em></h2>
+  <h2 class="section-title es">Nadar sobre<br><em>el valle</em></h2>
+  <div class="body-serif en">
+    <p>A private infinity-edge pool perched on the hillside — swim with panoramic views stretching to Córdoba city and the plains beyond. Automated filtration, surrounded by native garden.</p>
+    <p>Fully enclosed, fully private. Swimwear optional.</p>
   </div>
+  <div class="body-serif es">
+    <p>Una pileta de borde infinito suspendida en la ladera — nadá con vistas panorámicas hasta la ciudad de Córdoba. Filtración automática, rodeada de monte nativo.</p>
+    <p>Totalmente privada y cerrada. Sin código de vestimenta.</p>
+  </div>
+</div>
+
+<!-- POOL TWO-UP -->
+<div class="two-up">
+  <img src="IMG-20250605-WA0030.jpg" alt="Pool and valley view through the pergola at golden hour">
+  <img src="PXL_20250316_133446486.jpg" alt="Pool edge with panoramic valley view">
+</div>
+<div style="height:3px;"></div>
+<div class="two-up">
+  <img src="PXL_20250126_191449901.jpg" alt="Pool with loungers and native garden">
+  <img src="PXL_20250627_165851963.jpg" alt="Outdoor rain shower on the terrace">
+</div>
+
+<!-- PULL QUOTE -->
+<div class="pull-quote reveal">
+  <blockquote class="en">"The house is incredible — well designed with great taste. Privileged views of the sierras from almost every corner. The outdoor shower has hot water — a beautiful detail."</blockquote>
+  <blockquote class="es">"La casa es increíble — bien diseñada con mucho gusto. Vistas privilegiadas de las sierras desde casi cada rincón. La ducha exterior tiene agua caliente — un detalle hermoso."</blockquote>
+  <cite>Feli · Córdoba</cite>
 </div>
 
 <!-- AMENITIES -->
-<div>
-  <div class="section reveal">
-    <div class="section-label en">What's Included</div>
-    <div class="section-label es">Qué Incluye</div>
-    <h2 class="en">Everything you <em>need</em></h2>
-    <h2 class="es">Todo lo que <em>necesitás</em></h2>
-    <div class="amenities-grid">
-      <div class="amenity"><span class="amenity-icon">≈</span><span class="amenity-text en">Private pool (auto-filtered)</span><span class="amenity-text es">Pileta privada (filtro automático)</span></div>
-      <div class="amenity"><span class="amenity-icon">⌂</span><span class="amenity-text en">Quincho with gas grill</span><span class="amenity-text es">Quincho con parrilla a gas</span></div>
-      <div class="amenity"><span class="amenity-icon">◉</span><span class="amenity-text en">Panoramic mountain views</span><span class="amenity-text es">Vistas panorámicas a las sierras</span></div>
-      <div class="amenity"><span class="amenity-icon">◻</span><span class="amenity-text en">Fully equipped kitchen</span><span class="amenity-text es">Cocina totalmente equipada</span></div>
-      <div class="amenity"><span class="amenity-icon">✦</span><span class="amenity-text en">Wi-Fi throughout</span><span class="amenity-text es">Wi-Fi en toda la casa</span></div>
-      <div class="amenity"><span class="amenity-icon">○</span><span class="amenity-text en">Solar hot water</span><span class="amenity-text es">Agua caliente solar</span></div>
-      <div class="amenity"><span class="amenity-icon">▷</span><span class="amenity-text en">Smart lighting (Google Home)</span><span class="amenity-text es">Luces inteligentes (Google Home)</span></div>
-      <div class="amenity"><span class="amenity-icon">⊡</span><span class="amenity-text en">Garage — 2 cars</span><span class="amenity-text es">Garaje para 2 autos</span></div>
-      <div class="amenity"><span class="amenity-icon">◈</span><span class="amenity-text en">Automated sprinkler system</span><span class="amenity-text es">Sistema de riego automático</span></div>
-      <div class="amenity"><span class="amenity-icon">☀</span><span class="amenity-text en">Fully private & enclosed</span><span class="amenity-text es">Totalmente privada y cercada</span></div>
-      <div class="amenity"><span class="amenity-icon">⌾</span><span class="amenity-text en">Native forest garden</span><span class="amenity-text es">Jardín de monte nativo</span></div>
-      <div class="amenity"><span class="amenity-icon">✔</span><span class="amenity-text en">Pets by arrangement</span><span class="amenity-text es">Mascotas con aviso previo</span></div>
+<div class="amenities-wrap reveal">
+  <div class="section-label en">What's Included</div>
+  <div class="section-label es">Qué Incluye</div>
+  <h2 class="section-title en" style="margin-bottom:40px;">Everything you <em>need</em></h2>
+  <h2 class="section-title es" style="margin-bottom:40px;">Todo lo que <em>necesitás</em></h2>
+  <div class="amenities-grid">
+    <div class="amenity"><span class="amenity-icon">≈</span><span class="amenity-text en">Private pool (auto-filtered)</span><span class="amenity-text es">Pileta privada (filtro automático)</span></div>
+    <div class="amenity"><span class="amenity-icon">⌂</span><span class="amenity-text en">Quincho with gas grill</span><span class="amenity-text es">Quincho con parrilla a gas</span></div>
+    <div class="amenity"><span class="amenity-icon">◉</span><span class="amenity-text en">Panoramic mountain views</span><span class="amenity-text es">Vistas panorámicas a las sierras</span></div>
+    <div class="amenity"><span class="amenity-icon">◻</span><span class="amenity-text en">Fully equipped kitchen</span><span class="amenity-text es">Cocina totalmente equipada</span></div>
+    <div class="amenity"><span class="amenity-icon">✦</span><span class="amenity-text en">Wi-Fi throughout</span><span class="amenity-text es">Wi-Fi en toda la casa</span></div>
+    <div class="amenity"><span class="amenity-icon">○</span><span class="amenity-text en">Solar hot water</span><span class="amenity-text es">Agua caliente solar</span></div>
+    <div class="amenity"><span class="amenity-icon">▷</span><span class="amenity-text en">Smart lighting (Google Home)</span><span class="amenity-text es">Luces inteligentes (Google Home)</span></div>
+    <div class="amenity"><span class="amenity-icon">⊡</span><span class="amenity-text en">Garage — 2 cars</span><span class="amenity-text es">Garaje para 2 autos</span></div>
+    <div class="amenity"><span class="amenity-icon">◈</span><span class="amenity-text en">Automated sprinkler system</span><span class="amenity-text es">Sistema de riego automático</span></div>
+    <div class="amenity"><span class="amenity-icon">☀</span><span class="amenity-text en">Fully private & enclosed</span><span class="amenity-text es">Totalmente privada y cercada</span></div>
+    <div class="amenity"><span class="amenity-icon">⌾</span><span class="amenity-text en">Native forest garden</span><span class="amenity-text es">Jardín de monte nativo</span></div>
+    <div class="amenity"><span class="amenity-icon">✔</span><span class="amenity-text en">Pets by arrangement</span><span class="amenity-text es">Mascotas con aviso previo</span></div>
+  </div>
+</div>
+
+<!-- FULL-WIDTH IMAGE -->
+<div class="img-scale-wrap"><img src="PXL_20251216_112250440.jpg" alt="Garden and pool with native forest and valley views" class="full-img-hero"></div>
+
+<!-- TIPS -->
+<div class="tips-section">
+  <div class="tips-inner reveal">
+    <div class="tips-header">
+      <div class="section-label en">Tips & Recommendations</div>
+      <div class="section-label es">Tips y Recomendaciones</div>
+      <h2 class="section-title en">Making the most<br>of <em>your stay</em></h2>
+      <h2 class="section-title es">Cómo aprovechar<br><em>tu estadía</em></h2>
+    </div>
+    <div>
+      <div class="tip-item">
+        <div class="tip-num">01 / 05</div>
+        <div>
+          <div class="tip-title en">Getting There</div>
+          <div class="tip-title es">Cómo Llegar</div>
+          <p class="tip-body en">Córdoba Airport (COR) is 30 minutes by car — the easiest entry point. The property is reached via a scenic 10-minute road up from the highway. A car is recommended for exploring the area.</p>
+          <p class="tip-body es">El Aeropuerto de Córdoba (COR) está a 30 minutos en auto. La propiedad se llega por un pintoresco camino de 10 minutos desde la autopista. Se recomienda auto para explorar la zona.</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">02 / 05</div>
+        <div>
+          <div class="tip-title en">Best Time to Visit</div>
+          <div class="tip-title es">Mejor Época para Visitar</div>
+          <p class="tip-body en">Spring and autumn bring mild temperatures, lush greenery, and clear skies. Summer is pool season — warm days and cool starlit nights. Winter evenings are best enjoyed by the wood stove.</p>
+          <p class="tip-body es">La primavera y el otoño traen temperaturas suaves y cielos despejados. El verano es la temporada de pileta. Las noches de invierno se disfrutan mejor junto al hogar a leña.</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">03 / 05</div>
+        <div>
+          <div class="tip-title en">What to Do</div>
+          <div class="tip-title es">Qué Hacer</div>
+          <p class="tip-body en">Swim, slow down, and watch the valley light change throughout the day. Day trips to Carlos Paz (20 min), Alta Gracia and its UNESCO Jesuit estancia (40 min), or the river spots at San Clemente (40 min) are all worth it.</p>
+          <p class="tip-body es">Nadá, desacelerá y contemplá cómo la luz cambia en el valle. Vale la pena visitar Carlos Paz (20 min), Alta Gracia (40 min), o los rincones del río en San Clemente (40 min).</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">04 / 05</div>
+        <div>
+          <div class="tip-title en">What to Bring</div>
+          <div class="tip-title es">Qué Traer</div>
+          <p class="tip-body en">Layers for cool evenings, good olive oil and wine — the kitchen is fully equipped for serious cooking. Binoculars for the views. A playlist for the quincho. An open schedule.</p>
+          <p class="tip-body es">Ropa de abrigo para las noches frescas, buen aceite y vino — la cocina está equipada para cocinar en serio. Binoculares para las vistas. Una playlist para el quincho. Una agenda abierta.</p>
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">05 / 05</div>
+        <div>
+          <div class="tip-title en">Staying at Quinta Sierras</div>
+          <div class="tip-title es">Hospedarse en Quinta Sierras</div>
+          <p class="tip-body en">This is a place to slow down completely. Cook together, watch the sunsets from the pool edge, listen to the birds in the morning, and let the landscape set the pace.</p>
+          <p class="tip-body es">Este es un lugar para desacelerar por completo. Cocinen juntos, miren los atardeceres desde la pileta, escuchen los pájaros y dejen que el paisaje marque el ritmo.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- POOL SECTION
-     Two photos side by side at 500px height.
-     Left: loungers shot — object-position top shows chairs + pool + blue sky.
-     Right: infinity edge — object-position bottom shows pool + valley, not sky.
--->
-<div style="background: var(--cream);">
-  <div class="section reveal" style="padding-bottom: 32px;">
-    <div class="section-label en">The Pool</div>
-    <div class="section-label es">La Pileta</div>
-    <h2 class="en">Swim above<br><em>the valley</em></h2>
-    <h2 class="es">Nadar sobre<br><em>el valle</em></h2>
-    <p class="lead en">A private infinity-edge pool perched on the hillside — swim with panoramic views stretching to Córdoba city and the plains beyond. Fully enclosed and private — swimwear optional.</p>
-    <p class="lead es">Una pileta de borde infinito suspendida en la ladera — nadá con vistas panorámicas hasta la ciudad de Córdoba. Totalmente privada — sin código de vestimenta.</p>
-  </div>
-  <div style="max-width:1100px; margin: 0 auto; padding: 0 48px 96px;" class="pool-photos-wrap">
-    <div class="pool-photos">
-      <img src="IMG-20250605-WA0030.jpg" alt="Pool and valley view through the pergola at golden hour">
-      <img src="PXL_20250126_191449901.jpg" alt="Pool with striped loungers and lush garden">
-      <img src="PXL_20250316_133446486.jpg" alt="Pool edge with panoramic valley view">
-      <img src="PXL_20250627_165851963.jpg" alt="Outdoor rain shower on the terrace with valley views">
-    </div>
-  </div>
-</div>
-
-<!-- ROOMS STRIP — 5 photos natural height, no cropping -->
-<div class="rooms-strip" style="padding: 0 0 0 0;">
+<!-- ROOMS STRIP -->
+<div class="three-up">
   <img src="airbnb-bedroom1.jpg" alt="Bedroom 1 — king bed">
   <img src="airbnb-bedroom2.jpg" alt="Bedroom 2 — double bed">
   <img src="airbnb-bathroom.jpg" alt="Bathroom with antique clawfoot bathtub">
 </div>
 
-<!-- RATES -->
-<div id="rates" style="background: var(--charcoal);">
-  <div style="max-width: 560px; margin: 0 auto; padding: 96px 48px;" class="reveal">
-      <div class="section-label" style="color: var(--sand-light);">Rates</div>
-      <h2 class="en" style="color: var(--white);">Simple,<br><em>transparent pricing</em></h2>
-      <h2 class="es" style="color: var(--white);">Precios simples<br><em>y transparentes</em></h2>
-      <div class="rates-box">
-        <div class="rate-main">
-          <div class="rate-amount">$140</div>
-          <div class="rate-unit en">/ night from</div>
-          <div class="rate-unit es">/ noche desde</div>
-        </div>
-        <div class="rate-note en">Rates vary by season · USD · No hidden fees</div>
-        <div class="rate-note es">Las tarifas varían según temporada · USD · Sin costos ocultos</div>
-        <div class="rate-details">
-          <div class="rate-row"><span class="en">Low season</span><span class="es">Temporada baja</span><span>$140 / night</span></div>
-          <div class="rate-row"><span class="en">High season</span><span class="es">Temporada alta</span><span>$210 / night</span></div>
-          <div class="rate-row"><span class="en">Cleaning fee</span><span class="es">Limpieza</span><span>$60 / stay</span></div>
-          <div class="rate-row"><span class="en">Minimum stay</span><span class="es">Estadía mínima</span><span style="color:var(--white);font-weight:500;" class="en">3 nights</span><span style="color:var(--white);font-weight:500;" class="es">3 noches</span></div>
-          <div class="rate-row"><span class="en">Monthly rate</span><span class="es">Tarifa mensual</span><span style="color:var(--white);font-weight:500;" class="en">On request</span><span style="color:var(--white);font-weight:500;" class="es">A consultar</span></div>
-          <div class="rate-row"><span class="en">Maximum guests</span><span class="es">Máximo de huéspedes</span><span>4</span></div>
-        </div>
-        <a href="mailto:quintasierras@gmail.com" class="btn-book-cta en">Email to Book</a>
-        <a href="mailto:quintasierras@gmail.com" class="btn-book-cta es">Escribinos</a>
-        <br><br>
-        <a href="https://wa.me/543518749830" class="btn-whatsapp" target="_blank">
-          <span>💬</span>
-          <span class="en">Ask us on WhatsApp</span>
-          <span class="es">Consultanos por WhatsApp</span>
-        </a>
-      </div>
+<!-- LOCATION / NEARBY -->
+<div class="nearby-section" id="location">
+  <div class="reveal">
+    <div class="section-label en">Location</div>
+    <div class="section-label es">Ubicación</div>
+    <h2 class="section-title en">The <em>Córdoba Sierras</em></h2>
+    <h2 class="section-title es">Las <em>Sierras Cordobesas</em></h2>
+    <p class="body-serif en" style="max-width:640px;">Barrio Paso de Piedra is strategically positioned between the best of the Sierras — all connected by highway, with a scenic 10-minute road up to the property. Local butcher, wine & cheese shop, and a mercado are a few kilometres away.</p>
+    <p class="body-serif es" style="max-width:640px;">El Barrio Paso de Piedra está estratégicamente ubicado entre lo mejor de las Sierras — todo conectado por autopista, con solo 10 minutos de camino pintoresco hasta la propiedad. Carnicería, vinoteca y quesos y un mercado a pocos kilómetros.</p>
+  </div>
+  <div class="nearby-grid reveal">
+    <div class="nearby-card">
+      <img src="carlos-paz.jpg" alt="Villa Carlos Paz lake">
+      <div class="nearby-dist en">20 min</div>
+      <div class="nearby-dist es">20 min</div>
+      <div class="nearby-name">Carlos Paz</div>
+      <p class="nearby-desc en">The Sierra's most lively town — restaurants, lake, nightlife, and all services.</p>
+      <p class="nearby-desc es">La ciudad más animada de las Sierras — restaurantes, lago, vida nocturna y todos los servicios.</p>
+    </div>
+    <div class="nearby-card">
+      <img src="4ac1cc884e3a68d4860576c1622c8ade-cordoba.avif" alt="Córdoba city">
+      <div class="nearby-dist en">30 min</div>
+      <div class="nearby-dist es">30 min</div>
+      <div class="nearby-name en">Córdoba City & Airport</div>
+      <div class="nearby-name es">Ciudad y Aeropuerto</div>
+      <p class="nearby-desc en">Argentina's second city — fine dining, museums, and the bohemian Barrio Güemes. International airport also 30 min.</p>
+      <p class="nearby-desc es">La segunda ciudad de Argentina — gastronomía, museos y el bohemio Barrio Güemes. Aeropuerto internacional también a 30 min.</p>
+    </div>
+    <div class="nearby-card">
+      <img src="alta-gracia.jpg" alt="Alta Gracia Jesuit estancia">
+      <div class="nearby-dist">40 min</div>
+      <div class="nearby-name">Alta Gracia</div>
+      <p class="nearby-desc en">UNESCO World Heritage Jesuit estancia and one of Argentina's most beautiful colonial cities.</p>
+      <p class="nearby-desc es">Estancia jesuítica Patrimonio de la Humanidad UNESCO y una de las ciudades coloniales más bellas de Argentina.</p>
+    </div>
+    <div class="nearby-card">
+      <img src="san-clemente-river.jpg" alt="San Clemente river">
+      <div class="nearby-dist">40 min</div>
+      <div class="nearby-name">San Clemente</div>
+      <p class="nearby-desc en">Beautiful river spots over the other side of the sierra. Outstanding traditional empanadas at Amigos de San Clemente.</p>
+      <p class="nearby-desc es">Hermosos rincones del río al otro lado de la sierra. Empanadas tradicionales excelentes en Amigos de San Clemente.</p>
+    </div>
   </div>
 </div>
 
-<!-- LOCATION -->
-<div id="location" class="section-alt">
-  <div class="section reveal">
-    <div class="section-label en">Location</div>
-    <div class="section-label es">Ubicación</div>
-    <h2 class="en">The <em>Córdoba Sierras</em></h2>
-    <h2 class="es">Las <em>Sierras Cordobesas</em></h2>
-    <p class="lead en">Barrio Paso de Piedra is strategically positioned between the best of the Sierras — all connected by highway, with just a scenic 10-minute road up to the property. Local butcher, wine & cheese shop, and a mercado are a few kilometres away.</p>
-    <p class="lead es">El Barrio Paso de Piedra está estratégicamente ubicado entre lo mejor de las Sierras — todo conectado por autopista, con solo 10 minutos de camino pintoresco hasta la propiedad. Carnicería, vinoteca y quesos y un mercado a pocos kilómetros.</p>
-    <div class="location-grid">
-      <div class="location-card">
-        <img src="carlos-paz.jpg" alt="Villa Carlos Paz lake">
-        <div class="location-card-body">
-          <div class="location-card-dist en">20 min</div>
-          <div class="location-card-dist es">20 min</div>
-          <div class="location-card-title">Carlos Paz</div>
-          <div class="location-card-desc en">The Sierra's most lively town — restaurants, lake, nightlife, and all services.</div>
-          <div class="location-card-desc es">La ciudad más animada de las Sierras — restaurantes, lago, vida nocturna y todos los servicios.</div>
-        </div>
-      </div>
-      <div class="location-card">
-        <img src="4ac1cc884e3a68d4860576c1622c8ade-cordoba.avif" alt="Córdoba city">
-        <div class="location-card-body">
-          <div class="location-card-dist en">30 min</div>
-          <div class="location-card-dist es">30 min</div>
-          <div class="location-card-title en">Córdoba City & Airport</div>
-          <div class="location-card-title es">Ciudad y Aeropuerto</div>
-          <div class="location-card-desc en">Argentina's second city — fine dining, museums, and the bohemian Barrio Güemes. International airport also 30 min.</div>
-          <div class="location-card-desc es">La segunda ciudad de Argentina — gastronomía, museos y el bohemio Barrio Güemes. Aeropuerto internacional también a 30 min.</div>
-        </div>
-      </div>
-      <div class="location-card">
-        <img src="alta-gracia.jpg" alt="Alta Gracia Jesuit estancia">
-        <div class="location-card-body">
-          <div class="location-card-dist en">40 min</div>
-          <div class="location-card-dist es">40 min</div>
-          <div class="location-card-title">Alta Gracia</div>
-          <div class="location-card-desc en">UNESCO World Heritage Jesuit estancia and one of Argentina's most beautiful colonial cities.</div>
-          <div class="location-card-desc es">Estancia jesuítica Patrimonio de la Humanidad UNESCO y una de las ciudades coloniales más bellas de Argentina.</div>
-        </div>
-      </div>
-      <div class="location-card">
-        <img src="san-clemente-river.jpg" alt="San Clemente river">
-        <div class="location-card-body">
-          <div class="location-card-dist en">40 min</div>
-          <div class="location-card-dist es">40 min</div>
-          <div class="location-card-title">San Clemente</div>
-          <div class="location-card-desc en">Beautiful river spots over the other side of the sierra. Outstanding traditional empanadas at Amigos de San Clemente.</div>
-          <div class="location-card-desc es">Hermosos rincones del río al otro lado de la sierra. Empanadas tradicionales excelentes en Amigos de San Clemente.</div>
-        </div>
+<!-- RATES -->
+<div id="rates" class="rates-section">
+  <div class="rates-inner reveal">
+    <div>
+      <div class="section-label en">Rates</div>
+      <div class="section-label es">Tarifas</div>
+      <div class="rate-big">$140</div>
+      <div class="rate-sub en">per night from · USD · No hidden fees</div>
+      <div class="rate-sub es">por noche desde · USD · Sin costos ocultos</div>
+      <div class="rate-row"><span class="en">Low season</span><span class="es">Temporada baja</span><span>$140 / night</span></div>
+      <div class="rate-row"><span class="en">High season</span><span class="es">Temporada alta</span><span>$210 / night</span></div>
+      <div class="rate-row"><span class="en">Cleaning fee</span><span class="es">Limpieza</span><span>$60 / stay</span></div>
+      <div class="rate-row"><span class="en">Minimum stay</span><span class="es">Estadía mínima</span><span><span class="en">3 nights</span><span class="es">3 noches</span></span></div>
+      <div class="rate-row"><span class="en">Maximum guests</span><span class="es">Máximo de huéspedes</span><span>4</span></div>
+      <div class="rate-row"><span class="en">Monthly rate</span><span class="es">Tarifa mensual</span><span><span class="en">On request</span><span class="es">A consultar</span></span></div>
+      <div style="margin-top:32px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="mailto:quintasierras@gmail.com" class="btn-book-lg en">Email to Book</a>
+        <a href="mailto:quintasierras@gmail.com" class="btn-book-lg es">Escribinos</a>
+        <a href="https://wa.me/543518749830" class="btn-wa en" target="_blank">WhatsApp</a>
+        <a href="https://wa.me/543518749830" class="btn-wa es" target="_blank">WhatsApp</a>
       </div>
     </div>
+    <div class="rates-img">
+      <img src="PXL_20251203_133016307.jpg" alt="View through steel-frame windows to the terrace and valley">
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery">
+  <div class="gallery-header reveal">
+    <div class="section-label en">Gallery</div>
+    <div class="section-label es">Galería</div>
+    <h2 class="section-title en">The <em>spaces</em></h2>
+    <h2 class="section-title es">Los <em>espacios</em></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-cell"><img src="house-dusk.avif" alt="House at dusk — glowing steel-frame windows"></div>
+    <div class="gallery-cell"><img src="house-exterior.jpg" alt="House and pool exterior"></div>
+    <div class="gallery-cell"><img src="house-overview.jpg" alt="House, pool and valley view"></div>
+    <div class="gallery-cell"><img src="airbnb-aerial.jpg" alt="Aerial view of house and pool"></div>
+    <div class="gallery-cell"><img src="living-room-stove.avif" alt="Open-plan living area at golden hour"></div>
+    <div class="gallery-cell"><img src="PXL_20250409_190232782.jpg" alt="Living room with wood stove"></div>
+    <div class="gallery-cell"><img src="PXL_20251203_133016307.jpg" alt="Steel-frame windows to terrace and valley"></div>
+    <div class="gallery-cell"><img src="PXL_20251216_112250440.jpg" alt="Garden and pool with valley views"></div>
+    <div class="gallery-cell"><img src="PXL_20250627_165946938.jpg" alt="Quincho outdoor living area"></div>
+    <div class="gallery-cell"><img src="PXL_20250320_175830160.jpg" alt="Quincho terrace with stone floor"></div>
+    <div class="gallery-cell"><img src="PXL_20231112_233014294.jpg" alt="Interior at night — fireplace"></div>
+    <div class="gallery-cell"><img src="still-life.jpg" alt="Kitchen still life with valley view"></div>
+    <div class="gallery-cell"><img src="IMG-20250605-WA0030.jpg" alt="Pool view through the pergola at golden hour"></div>
+    <div class="gallery-cell"><img src="PXL_20250316_133446486.jpg" alt="Pool edge with panoramic valley view"></div>
+    <div class="gallery-cell"><img src="PXL_20250627_165851963.jpg" alt="Outdoor rain shower on the terrace"></div>
+    <div class="gallery-cell"><img src="tree-allee.jpg" alt="Tree-lined entrance road"></div>
   </div>
 </div>
 
 <!-- REVIEWS -->
-<div style="background: var(--charcoal); padding: 80px 0;">
-  <div class="section reveal" style="max-width:1100px;margin:0 auto;padding:0 48px;">
-    <div class="section-label" style="color:var(--sand-light);">Guest Reviews</div>
-    <p style="font-family:var(--sans);font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:48px;max-width:400px;" class="en">From Airbnb guests — translated where shown.</p>
-    <p style="font-family:var(--sans);font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:48px;max-width:400px;" class="es">Opiniones de huéspedes de Airbnb.</p>
+<div class="reviews-section reveal">
+  <div class="reviews-inner">
+    <div class="section-label" style="color:rgba(255,255,255,0.35); margin-bottom:0;">Guest Reviews</div>
     <div class="reviews-grid">
-      <div style="background:rgba(255,255,255,0.06);padding:32px;border-radius:2px;border-top:2px solid var(--sand);">
-        <p style="font-family:var(--serif);font-size:15px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.75;margin-bottom:20px;">"The house is incredible — well designed with great taste. The outdoor shower by the pool has hot water, a beautiful detail. Privileged views of the sierras from almost every corner of the property. Garrett was an excellent host, always kind and attentive. We will definitely return."</p>
-        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--sand-light);">Feli · Córdoba</div>
+      <div class="review-item">
+        <p class="review-text">"The house is incredible — well designed with great taste. The outdoor shower by the pool has hot water, a beautiful detail. Privileged views of the sierras from almost every corner of the property."</p>
+        <div class="review-author">Feli · Córdoba</div>
       </div>
-      <div style="background:rgba(255,255,255,0.06);padding:32px;border-radius:2px;border-top:2px solid var(--sand);">
-        <p style="font-family:var(--serif);font-size:15px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.75;margin-bottom:20px;">"Garrett is a great host — attentive to all our needs and recommended great places to visit. The house is incredible, has everything you need for relaxing days by the pool and a fully equipped kitchen with many comforts for cooking."</p>
-        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--sand-light);">Fiorella · Argentina</div>
+      <div class="review-item">
+        <p class="review-text">"A great host — attentive to all our needs and recommended great places to visit. The house is incredible, has everything you need for relaxing days by the pool and a fully equipped kitchen."</p>
+        <div class="review-author">Fiorella · Argentina</div>
       </div>
-      <div style="background:rgba(255,255,255,0.06);padding:32px;border-radius:2px;border-top:2px solid var(--sand);">
-        <p style="font-family:var(--serif);font-size:15px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.75;margin-bottom:20px;">"Four beautiful days at Garrett's place. Lovely views and beautiful sunrises. The house is decorated with great taste — clean linens, ample towels. Without a doubt recommended for a few days of rest."</p>
-        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--sand-light);">Victoria · Argentina</div>
+      <div class="review-item">
+        <p class="review-text">"Four beautiful days here. Lovely views and beautiful sunrises. The house is decorated with great taste — without a doubt recommended for a few days of rest."</p>
+        <div class="review-author">Victoria · Argentina</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- BOOKING -->
-<div id="book" class="booking-section">
-  <div class="booking-inner reveal">
-    <div class="section-label en" style="text-align:center;">Reservations</div>
-    <div class="section-label es" style="text-align:center;">Reservas</div>
+<!-- BOOK CTA -->
+<div id="book">
+  <div class="book-section reveal">
+    <div class="section-label" style="text-align:center; margin-bottom:16px;" class="en">Reservations</div>
     <h2 class="en">Book your <em>stay</em></h2>
     <h2 class="es">Reservá tu <em>estadía</em></h2>
-    <p class="lead en">Send us an email or message us on WhatsApp — we'll confirm availability and sort out the details directly.</p>
-    <p class="lead es">Mandanos un email o escribinos por WhatsApp — confirmamos disponibilidad y coordinamos todo directamente.</p>
-    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-      <a href="mailto:quintasierras@gmail.com" class="btn-primary en" style="background:var(--charcoal);color:var(--white);">Email to Book</a>
-      <a href="mailto:quintasierras@gmail.com" class="btn-primary es" style="background:var(--charcoal);color:var(--white);">Escribinos</a>
-      <a href="https://wa.me/543518749830" class="btn-ghost en" target="_blank" style="color:var(--charcoal);border-color:var(--gray-light);">WhatsApp Us</a>
-      <a href="https://wa.me/543518749830" class="btn-ghost es" target="_blank" style="color:var(--charcoal);border-color:var(--gray-light);">WhatsApp</a>
+    <p class="en">Send us an email or message us on WhatsApp — we'll confirm availability and sort out the details directly.</p>
+    <p class="es">Mandanos un email o escribinos por WhatsApp — confirmamos disponibilidad y coordinamos todo directamente.</p>
+    <div class="book-actions">
+      <a href="mailto:quintasierras@gmail.com" class="btn-book-lg en">Email to Book</a>
+      <a href="mailto:quintasierras@gmail.com" class="btn-book-lg es">Escribinos</a>
+      <a href="https://wa.me/543518749830" class="btn-wa en" target="_blank">WhatsApp Us</a>
+      <a href="https://wa.me/543518749830" class="btn-wa es" target="_blank">WhatsApp</a>
     </div>
   </div>
 </div>
@@ -584,11 +628,22 @@ body.lang-es .btn-book-nav.en { display: none; }
   }
   window.addEventListener('scroll', () => {
     document.getElementById('nav').style.boxShadow =
-      window.scrollY > 40 ? '0 2px 24px rgba(0,0,0,0.08)' : 'none';
+      window.scrollY > 40 ? '0 2px 20px rgba(0,0,0,0.07)' : 'none';
   });
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.05 });
+  const scaleObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); }
+      else { e.target.classList.remove('in-view'); }
+    });
+  }, { threshold: 0.05 });
+
+  requestAnimationFrame(() => {
+    // Only animate the explicit full-bleed wrappers
+    document.querySelectorAll('.img-scale-wrap').forEach(el => scaleObserver.observe(el));
+  });
   document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
