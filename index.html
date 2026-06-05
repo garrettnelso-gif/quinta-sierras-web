@@ -234,6 +234,11 @@ body.lang-es .es { display: revert; }
 body.lang-es .es.flex { display: flex; }
 body.lang-es .es.grid { display: grid; }
 body.lang-es .es.inline-block { display: inline-block; }
+/* Explicit nav button visibility — belt and braces */
+body:not(.lang-es) .btn-book-nav.en { display: inline-block; }
+body.lang-es .btn-book-nav.es { display: inline-block; }
+body:not(.lang-es) .btn-book-nav.es { display: none; }
+body.lang-es .btn-book-nav.en { display: none; }
 </style>
 </head>
 <body>
@@ -266,8 +271,8 @@ body.lang-es .es.inline-block { display: inline-block; }
   <a href="#rates" onclick="closeMenu()" class="es">Tarifas</a>
   <a href="#location" onclick="closeMenu()" class="en">Location</a>
   <a href="#location" onclick="closeMenu()" class="es">Ubicación</a>
-  <a href="#book" onclick="closeMenu()" class="en">Book Now</a>
-  <a href="#book" onclick="closeMenu()" class="es">Reservar</a>
+  <a href="mailto:quintasierras@gmail.com" onclick="closeMenu()" class="en">Book Now</a>
+  <a href="mailto:quintasierras@gmail.com" onclick="closeMenu()" class="es">Reservar</a>
 </div>
 
 <!-- HERO — exterior Airbnb photo, sets the location -->
