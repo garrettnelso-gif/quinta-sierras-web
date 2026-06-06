@@ -33,8 +33,9 @@ nav {
   border-bottom: 1px solid var(--gray-light);
   transition: box-shadow 0.3s;
 }
-.nav-logo { font-family: var(--logo); font-size: 18px; font-weight: 400; letter-spacing: 0.03em; color: var(--black); text-decoration: none; }
-.nav-logo em { font-style: italic; }
+.wordmark { font-family: var(--logo); font-weight: 400; letter-spacing: 0.04em; font-feature-settings: "swsh" 1; }
+.wordmark em { font-style: italic; }
+.nav-logo { font-size: 18px; color: var(--black); text-decoration: none; }
 .nav-links { display: flex; gap: 28px; align-items: center; }
 .nav-links a { font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
 .nav-links a:hover { color: var(--black); }
@@ -60,7 +61,7 @@ nav {
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.15) 100%); }
 .hero-inner { position: relative; max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 40px 60px; color: var(--white); }
 .hero-location { font-family: var(--sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px; }
-.hero h1 { font-family: var(--logo); font-size: clamp(52px, 7vw, 100px); font-weight: 300; line-height: 0.92; letter-spacing: -0.02em; }
+.hero h1 { font-family: var(--logo); font-size: clamp(52px, 7vw, 100px); font-weight: 400; line-height: 0.92; letter-spacing: 0.04em; }
 .hero h1 em { font-style: italic; }
 @media (max-width: 600px) { .hero-inner { padding: 0 24px 48px; } }
 
@@ -96,6 +97,17 @@ nav {
 .three-up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; align-items: start; }
 .three-up img { width: 100%; height: auto; display: block; }
 @media (max-width: 640px) { .two-up { grid-template-columns: 1fr; } .three-up { grid-template-columns: 1fr 1fr; } }
+
+/* ── SERVICES ── */
+.services-section { border-top: 1px solid var(--gray-light); }
+.services-inner { max-width: 1200px; margin: 0 auto; padding: 80px 40px; }
+@media (max-width: 600px) { .services-inner { padding: 56px 24px; } }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 48px; border-top: 1px solid var(--gray-light); }
+@media (max-width: 768px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .services-grid { grid-template-columns: 1fr; } }
+.service-item { padding: 28px 24px 28px 0; border-bottom: 1px solid var(--gray-light); }
+.service-title { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); margin-bottom: 10px; }
+.service-desc { font-family: var(--sans); font-size: 13px; color: var(--gray); line-height: 1.7; font-weight: 300; }
 
 /* ── SCROLL SCALE ── */
 .img-scale-wrap { overflow: hidden; }
@@ -191,8 +203,7 @@ nav {
 /* ── FOOTER ── */
 footer { background: var(--black); color: rgba(255,255,255,0.45); padding: 48px 40px; }
 .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
-.footer-brand { font-family: var(--logo); font-size: 18px; color: rgba(255,255,255,0.82); }
-.footer-brand em { font-style: italic; }
+.footer-brand { font-size: 18px; color: rgba(255,255,255,0.82); }
 .footer-links { display: flex; gap: 24px; }
 .footer-links a { font-family: var(--sans); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
 .footer-links a:hover { color: rgba(255,255,255,0.8); }
@@ -211,6 +222,52 @@ body.lang-es .btn-book-nav.es { display: inline-block; }
 body:not(.lang-es) .btn-book-nav.es { display: none; }
 body.lang-es .btn-book-nav.en { display: none; }
 
+/* ── SUNRISE BACKGROUND ── */
+@keyframes sunriseBody {
+  0%   { background-color: #d8d2f0; }
+  8%   { background-color: #cfc8ec; }
+  18%  { background-color: #f5c8a8; }
+  28%  { background-color: #ffc070; }
+  40%  { background-color: #ffd898; }
+  52%  { background-color: #ffe8b8; }
+  63%  { background-color: #fff4de; }
+  73%  { background-color: #ffffff; }
+  82%  { background-color: #f8f6ff; }
+  90%  { background-color: #e8e2f8; }
+  100% { background-color: #d8d2f0; }
+}
+@keyframes sunriseAlt {
+  0%   { background-color: #cec8e8; }
+  8%   { background-color: #c8c2e4; }
+  18%  { background-color: #efc0a0; }
+  28%  { background-color: #f8b868; }
+  40%  { background-color: #f8ce90; }
+  52%  { background-color: #f9e0b0; }
+  63%  { background-color: #faf0d8; }
+  73%  { background-color: #f8f7f4; }
+  82%  { background-color: #f2f0fa; }
+  90%  { background-color: #e0daf2; }
+  100% { background-color: #cec8e8; }
+}
+@keyframes sunriseNav {
+  0%   { background: rgba(216,210,240,0.96); }
+  8%   { background: rgba(208,202,236,0.96); }
+  18%  { background: rgba(245,200,168,0.96); }
+  28%  { background: rgba(255,192,112,0.96); }
+  40%  { background: rgba(255,216,152,0.96); }
+  52%  { background: rgba(255,232,184,0.96); }
+  63%  { background: rgba(255,244,222,0.96); }
+  73%  { background: rgba(255,255,255,0.96); }
+  82%  { background: rgba(248,246,255,0.96); }
+  90%  { background: rgba(232,226,248,0.96); }
+  100% { background: rgba(216,210,240,0.96); }
+}
+body { animation: sunriseBody 70s linear infinite; }
+nav { animation: sunriseNav 70s linear infinite; }
+.tips-section { animation: sunriseAlt 70s linear infinite; }
+.rates-section { animation: sunriseAlt 70s linear infinite; }
+.services-section { animation: sunriseAlt 70s linear infinite; }
+
 /* ── REVEAL ── */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: none; }
@@ -220,7 +277,7 @@ body.lang-es .btn-book-nav.en { display: none; }
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Quinta <em>Sierras</em></a>
+  <a href="#" class="nav-logo wordmark">Quinta <em>Sierras</em></a>
   <div class="nav-links">
     <a href="#gallery" class="en">Gallery</a>
     <a href="#gallery" class="es">Galería</a>
@@ -257,8 +314,8 @@ body.lang-es .btn-book-nav.en { display: none; }
   <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="hero-location">Barrio Paso de Piedra · Córdoba, Argentina</div>
-    <h1 class="en">Quinta<br><em>Sierras</em></h1>
-    <h1 class="es">Quinta<br><em>Sierras</em></h1>
+    <h1 class="en wordmark">Quinta<br><em>Sierras</em></h1>
+    <h1 class="es wordmark">Quinta<br><em>Sierras</em></h1>
   </div>
 </div>
 
@@ -541,6 +598,38 @@ body.lang-es .btn-book-nav.en { display: none; }
   </div>
 </div>
 
+<!-- SERVICES -->
+<div class="services-section">
+  <div class="services-inner reveal">
+    <div class="section-label en">During Your Stay</div>
+    <div class="section-label es">Durante Tu Estadía</div>
+    <h2 class="section-title en">Staff & <em>services</em></h2>
+    <h2 class="section-title es">Personal y <em>servicios</em></h2>
+    <p class="body-serif en" style="max-width:640px; margin-top:0;">A range of additional services can be arranged on request — not included in the rate. Dedicated staff are on call and happy to help organise whatever you need before or during your stay.</p>
+    <p class="body-serif es" style="max-width:640px; margin-top:0;">Una variedad de servicios adicionales puede coordinarse a pedido — no incluidos en la tarifa. Personal dedicado disponible para ayudarte a organizar lo que necesites antes o durante tu estadía.</p>
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-title en">Cleaning & Pool</div>
+        <div class="service-title es">Limpieza y Pileta</div>
+        <p class="service-desc en">Full housekeeping and pool maintenance available daily, arranged around your schedule.</p>
+        <p class="service-desc es">Limpieza completa y mantenimiento de pileta disponibles diariamente, según tu horario.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-title en">Private Cook</div>
+        <div class="service-title es">Cocinero Privado</div>
+        <p class="service-desc en">A private cook can be arranged for special meals or full catering throughout your stay.</p>
+        <p class="service-desc es">Cocinero privado para comidas especiales o catering completo durante tu estadía.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-title en">Chauffeur</div>
+        <div class="service-title es">Chofer</div>
+        <p class="service-desc en">Airport transfers and day trips to the Sierras, Carlos Paz, Alta Gracia and beyond.</p>
+        <p class="service-desc es">Traslados al aeropuerto y excursiones a las Sierras, Carlos Paz, Alta Gracia y más.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- GALLERY -->
 <div id="gallery">
   <div class="gallery-header reveal">
@@ -610,7 +699,7 @@ body.lang-es .btn-book-nav.en { display: none; }
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">Quinta <em>Sierras</em></div>
+    <div class="footer-brand wordmark">Quinta <em>Sierras</em></div>
     <div class="footer-links">
       <a href="https://wa.me/543518749830" target="_blank">WhatsApp</a>
       <a href="https://maps.app.goo.gl/BKaoHpUmwYfbApc9A" target="_blank">Google Maps</a>
