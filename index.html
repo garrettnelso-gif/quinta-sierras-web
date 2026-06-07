@@ -158,12 +158,16 @@ nav {
 /* ── NEARBY ── */
 .nearby-section { max-width: 1200px; margin: 0 auto; padding: 80px 40px; }
 @media (max-width: 600px) { .nearby-section { padding: 56px 24px; } }
-.nearby-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 32px; margin-top: 48px; }
-@media (max-width: 640px) { .nearby-grid { grid-template-columns: 1fr; gap: 32px; } }
-.nearby-card img { width: 100%; height: auto; display: block; margin-bottom: 16px; }
-.nearby-dist { font-family: var(--sans); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 4px; }
-.nearby-name { font-family: var(--sans); font-size: 20px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 6px; }
-.nearby-desc { font-family: var(--sans); font-size: 12px; color: var(--gray); line-height: 1.7; }
+.nearby-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 48px; border-top: 1px solid var(--gray-light); }
+@media (max-width: 960px) { .nearby-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .nearby-grid { grid-template-columns: 1fr; } }
+.nearby-card { padding: 28px 28px 28px 0; border-bottom: 1px solid var(--gray-light); }
+@media (max-width: 960px) { .nearby-card:nth-child(odd) { padding-right: 24px; } .nearby-card:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--gray-light); } }
+.nearby-card img { width: 100%; height: 180px; object-fit: cover; display: block; margin-bottom: 16px; }
+.nearby-num { font-family: var(--sans); font-size: 10px; letter-spacing: 0.1em; color: var(--gray-mid); margin-bottom: 16px; }
+.nearby-dist { font-family: var(--sans); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 6px; }
+.nearby-name { font-family: var(--sans); font-size: 22px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 10px; line-height: 1.1; }
+.nearby-desc { font-family: var(--sans); font-size: 12px; color: var(--gray); line-height: 1.75; }
 
 /* ── RATES ── */
 .rates-section { background: var(--off-white); border-top: 1px solid var(--gray-light); }
@@ -316,14 +320,13 @@ nav { animation: sunriseNav 70s linear infinite; }
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-img">
-    <img src="house-dusk.avif" alt="Quinta Sierras at dusk — steel-frame windows glowing over the valley">
-  </div>
-  <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="hero-location">Barrio Paso de Piedra · Córdoba, Argentina</div>
     <h1 class="en wordmark">Quinta<br><em>Sierras</em></h1>
     <h1 class="es wordmark">Quinta<br><em>Sierras</em></h1>
+  </div>
+  <div class="hero-img">
+    <img src="house-dusk.avif" alt="Quinta Sierras at dusk — steel-frame windows glowing over the valley">
   </div>
 </div>
 
@@ -546,16 +549,16 @@ nav { animation: sunriseNav 70s linear infinite; }
   <div class="nearby-grid reveal">
     <div class="nearby-card">
       <img src="carlos-paz.jpg" alt="Villa Carlos Paz lake">
-      <div class="nearby-dist en">20 min</div>
-      <div class="nearby-dist es">20 min</div>
+      <div class="nearby-num">01</div>
+      <div class="nearby-dist">20 min</div>
       <div class="nearby-name">Carlos Paz</div>
       <p class="nearby-desc en">The Sierra's most lively town — restaurants, lake, nightlife, and all services.</p>
       <p class="nearby-desc es">La ciudad más animada de las Sierras — restaurantes, lago, vida nocturna y todos los servicios.</p>
     </div>
     <div class="nearby-card">
       <img src="Cordoba-Argentine.jpg" alt="Córdoba city">
-      <div class="nearby-dist en">30 min</div>
-      <div class="nearby-dist es">30 min</div>
+      <div class="nearby-num">02</div>
+      <div class="nearby-dist">30 min</div>
       <div class="nearby-name en">Córdoba City & Airport</div>
       <div class="nearby-name es">Ciudad y Aeropuerto</div>
       <p class="nearby-desc en">Argentina's second city — fine dining, museums, and the bohemian Barrio Güemes. International airport also 30 min.</p>
@@ -563,6 +566,7 @@ nav { animation: sunriseNav 70s linear infinite; }
     </div>
     <div class="nearby-card">
       <img src="alta-gracia.jpg" alt="Alta Gracia Jesuit estancia">
+      <div class="nearby-num">03</div>
       <div class="nearby-dist">40 min</div>
       <div class="nearby-name">Alta Gracia</div>
       <p class="nearby-desc en">UNESCO World Heritage Jesuit estancia and one of Argentina's most beautiful colonial cities.</p>
@@ -570,6 +574,7 @@ nav { animation: sunriseNav 70s linear infinite; }
     </div>
     <div class="nearby-card">
       <img src="san-clemente-river.jpg" alt="San Clemente river">
+      <div class="nearby-num">04</div>
       <div class="nearby-dist">40 min</div>
       <div class="nearby-name">San Clemente</div>
       <p class="nearby-desc en">Beautiful river spots over the other side of the sierra. Outstanding traditional empanadas at Amigos de San Clemente.</p>
