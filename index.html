@@ -60,7 +60,7 @@ nav {
 .hero-img { line-height: 0; overflow: hidden; }
 .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 .hero-overlay { display: none; }
-.hero-inner { display: flex; flex-direction: column; justify-content: flex-end; padding: 60px 40px 60px 56px; background: var(--white); position: relative; overflow: hidden; animation: sunriseBody 70s linear infinite; }
+.hero-inner { display: flex; flex-direction: column; justify-content: flex-end; padding: 60px 40px 30% 56px; background: var(--white); position: relative; overflow: hidden; animation: sunriseBody 70s linear infinite; }
 .hero-inner::before { content: ''; position: absolute; inset: 0; background: url('olive print.webp') center center / cover no-repeat; opacity: 0.13; pointer-events: none; }
 .hero-location { font-family: var(--sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 20px; }
 .hero h1 { font-family: var(--logo); font-size: clamp(52px, 5.5vw, 90px); font-weight: 400; line-height: 0.92; letter-spacing: 0.04em; color: var(--black); }
@@ -103,7 +103,9 @@ nav {
 .two-up img { width: 100%; height: auto; display: block; }
 .three-up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; align-items: start; }
 .three-up img { width: 100%; height: auto; display: block; }
-@media (max-width: 640px) { .two-up { grid-template-columns: 1fr; } .three-up { grid-template-columns: 1fr 1fr; } }
+.four-up { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; align-items: start; }
+.four-up img { width: 100%; height: 360px; object-fit: cover; display: block; }
+@media (max-width: 640px) { .two-up { grid-template-columns: 1fr; } .three-up { grid-template-columns: 1fr; } .four-up { grid-template-columns: 1fr 1fr; } }
 
 /* ── SERVICES ── */
 .services-section { border-top: 1px solid var(--gray-light); }
@@ -150,8 +152,10 @@ nav {
 .tips-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
 @media (max-width: 600px) { .tips-inner { padding: 0 24px; } }
 .tips-header { margin-bottom: 48px; }
+.tips-grid { }
 .tip-item { display: grid; grid-template-columns: 72px 1fr; gap: 24px; padding: 28px 0; border-top: 1px solid var(--gray-light); align-items: start; }
 @media (max-width: 600px) { .tip-item { grid-template-columns: 48px 1fr; gap: 16px; } }
+@media (max-width: 640px) { .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; } }
 .tip-num { font-family: var(--sans); font-size: 10px; letter-spacing: 0.1em; color: var(--gray-mid); padding-top: 4px; }
 .tip-title { font-family: var(--sans); font-size: 18px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 8px; }
 .tip-body { font-family: var(--sans); font-size: 13px; color: var(--gray); line-height: 1.75; }
@@ -164,7 +168,8 @@ nav {
 @media (max-width: 480px) { .nearby-grid { grid-template-columns: 1fr; } }
 .nearby-card { padding: 28px 28px 28px 0; border-bottom: 1px solid var(--gray-light); }
 @media (max-width: 960px) { .nearby-card:nth-child(odd) { padding-right: 24px; } .nearby-card:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--gray-light); } }
-.nearby-card img { width: 100%; height: 180px; object-fit: cover; display: block; margin-bottom: 16px; }
+.nearby-card img { width: 100%; height: 220px; object-fit: cover; display: block; margin-bottom: 16px; }
+@media (max-width: 480px) { .nearby-card img { height: 240px; } }
 .nearby-num { font-family: var(--sans); font-size: 10px; letter-spacing: 0.1em; color: var(--gray-mid); margin-bottom: 16px; }
 .nearby-dist { font-family: var(--sans); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 6px; }
 .nearby-name { font-family: var(--sans); font-size: 22px; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 10px; line-height: 1.1; }
@@ -480,7 +485,7 @@ nav { animation: sunriseNav 70s linear infinite; }
       <h2 class="section-title en">Making the most<br>of <em>your stay</em></h2>
       <h2 class="section-title es">Cómo aprovechar<br><em>tu estadía</em></h2>
     </div>
-    <div>
+    <div class="tips-grid">
       <div class="tip-item">
         <div class="tip-num">01 / 05</div>
         <div>
@@ -531,10 +536,11 @@ nav { animation: sunriseNav 70s linear infinite; }
 </div>
 
 <!-- ROOMS STRIP -->
-<div class="three-up">
+<div class="four-up">
   <img src="airbnb-bedroom1.jpg" alt="Bedroom 1 — king bed">
   <img src="airbnb-bedroom2.jpg" alt="Bedroom 2 — double bed">
   <img src="airbnb-bathroom.jpg" alt="Bathroom with antique clawfoot bathtub">
+  <img src="woodstove.jpg" alt="Wood stove interior">
 </div>
 
 <!-- LOCATION / NEARBY -->
