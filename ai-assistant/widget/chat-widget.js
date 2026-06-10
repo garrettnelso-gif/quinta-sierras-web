@@ -87,25 +87,37 @@
   var history = []; // { role: 'user'|'assistant', content: '...' }
   var greeted = false;
 
-  // Renders text into the bubble as plain text, except for the
-  // "[label](url)" link pattern (used for WhatsApp/Email contact links),
-  // which becomes a real clickable <a>. Only http(s) and mailto URLs are
-  // allowed; everything else stays as escaped plain text.
-  var LINK_PATTERN = /\[([^\[\]]+)\]\((https?:\/\/[^\s()]+|mailto:[^\s()]+)\)/g;
+  // Renders text into the bubble as plain text, except for two contact
+  // tokens the assistant may emit:
+  //   {{whatsapp:MESSAGE}} -> a "WhatsApp" link that opens a chat with the
+  //     host with MESSAGE pre-filled.
+  //   {{email:MESSAGE}}    -> an "Email" link that opens a new email to the
+  //     host with MESSAGE pre-filled as the body.
+  // Everything else is rendered as plain text.
+  var WHATSAPP_NUMBER = '5493518749830';
+  var HOST_EMAIL = 'quintasierras@gmail.com';
+  var TOKEN_PATTERN = /\{\{(whatsapp|email):([^{}]+)\}\}/g;
 
   function renderRichText(container, text) {
     var lastIndex = 0;
     var match;
-    LINK_PATTERN.lastIndex = 0;
-    while ((match = LINK_PATTERN.exec(text)) !== null) {
+    TOKEN_PATTERN.lastIndex = 0;
+    while ((match = TOKEN_PATTERN.exec(text)) !== null) {
       if (match.index > lastIndex) {
         container.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
       }
+      var kind = match[1];
+      var msg = match[2].trim();
       var a = document.createElement('a');
-      a.href = match[2];
-      a.textContent = match[1];
       a.target = '_blank';
       a.rel = 'noopener noreferrer';
+      if (kind === 'whatsapp') {
+        a.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+        a.textContent = 'WhatsApp';
+      } else {
+        a.href = 'mailto:' + HOST_EMAIL + '?subject=' + encodeURIComponent('Quinta Sierras inquiry') + '&body=' + encodeURIComponent(msg);
+        a.textContent = 'Email';
+      }
       container.appendChild(a);
       lastIndex = match.index + match[0].length;
     }
