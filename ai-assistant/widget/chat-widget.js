@@ -98,6 +98,12 @@
   var HOST_EMAIL = 'quintasierras@gmail.com';
   var TOKEN_PATTERN = /\{\{(whatsapp|email):([^{}]+)\}\}/g;
 
+  // A trailing {{buttons:Option A|Option B}} token (up to 3 options,
+  // separated by "|") renders as tappable quick-reply buttons below the
+  // message. Tapping one sends that label as the guest's next message,
+  // exactly as written. Must be the last thing in the message.
+  var BUTTONS_PATTERN = /\{\{buttons:([^{}]+)\}\}\s*$/;
+
   function renderRichText(container, text) {
     var lastIndex = 0;
     var match;
@@ -131,12 +137,40 @@
     row.className = 'qsc-msg qsc-msg-' + role;
     var bubble = document.createElement('div');
     bubble.className = 'qsc-bubble';
+
+    var quickReplies = null;
     if (role === 'assistant') {
+      var btnMatch = text.match(BUTTONS_PATTERN);
+      if (btnMatch) {
+        quickReplies = btnMatch[1].split('|')
+          .map(function (s) { return s.trim(); })
+          .filter(Boolean)
+          .slice(0, 3);
+        text = text.slice(0, btnMatch.index).replace(/\s+$/, '');
+      }
       renderRichText(bubble, text);
     } else {
       bubble.textContent = text;
     }
     row.appendChild(bubble);
+
+    if (quickReplies && quickReplies.length) {
+      var replyRow = document.createElement('div');
+      replyRow.className = 'qsc-quick-replies';
+      quickReplies.forEach(function (label) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'qsc-quick-reply';
+        btn.textContent = label;
+        btn.addEventListener('click', function () {
+          replyRow.remove();
+          sendMessage(label);
+        });
+        replyRow.appendChild(btn);
+      });
+      row.appendChild(replyRow);
+    }
+
     messagesEl.appendChild(row);
     if (role === 'assistant') {
       // For assistant replies (which can be long), scroll so the start of
@@ -174,21 +208,18 @@
   });
   closeBtn.addEventListener('click', close);
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var text = input.value.trim();
+  function sendMessage(text) {
+    text = (text || '').trim();
     if (!text) return;
 
     if (!ENDPOINT) {
       addMessage('user', text);
       addMessage('assistant', T.disabled);
-      input.value = '';
       return;
     }
 
     addMessage('user', text);
     history.push({ role: 'user', content: text });
-    input.value = '';
     input.disabled = true;
 
     var typingRow = addTyping();
@@ -221,5 +252,13 @@
         input.disabled = false;
         input.focus();
       });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    sendMessage(text);
   });
 })();

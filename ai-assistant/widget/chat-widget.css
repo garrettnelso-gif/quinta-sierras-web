@@ -106,9 +106,9 @@
   gap: 10px;
   background: var(--qsc-bg-alt);
 }
-.qsc-msg { display: flex; }
-.qsc-msg-user { justify-content: flex-end; }
-.qsc-msg-assistant { justify-content: flex-start; }
+.qsc-msg { display: flex; flex-direction: column; }
+.qsc-msg-user { align-items: flex-end; }
+.qsc-msg-assistant { align-items: flex-start; }
 .qsc-bubble {
   max-width: 80%;
   padding: 10px 13px;
@@ -135,6 +135,31 @@
   text-decoration: underline;
 }
 .qsc-bubble a:hover { opacity: 0.8; }
+
+/* Quick reply buttons (from {{buttons:...}} tokens) */
+.qsc-quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  max-width: 80%;
+}
+.qsc-quick-reply {
+  border: 1px solid var(--qsc-accent);
+  background: transparent;
+  color: var(--qsc-accent);
+  border-radius: 14px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: var(--qsc-font);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, opacity 0.15s;
+}
+.qsc-quick-reply:hover {
+  background: var(--qsc-accent);
+  color: #fff;
+}
 
 /* Typing indicator */
 .qsc-typing { display: flex; gap: 4px; padding: 13px; align-items: center; }
