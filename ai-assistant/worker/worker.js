@@ -81,15 +81,36 @@ async function fetchBookedRanges(icalUrl) {
   }
 }
 
+// Expands { start, end } ranges (end = checkout date, exclusive) into a
+// flat, sorted list of individually-occupied night dates (YYYY-MM-DD),
+// capped to avoid bloating the prompt for very long-range bookings.
+const MAX_OCCUPIED_NIGHTS = 180;
+function expandOccupiedNights(bookedRanges) {
+  const nights = [];
+  for (const r of bookedRanges) {
+    let d = new Date(`${r.start}T00:00:00Z`);
+    const end = new Date(`${r.end}T00:00:00Z`);
+    while (d < end && nights.length < MAX_OCCUPIED_NIGHTS) {
+      nights.push(d.toISOString().slice(0, 10));
+      d = new Date(d.getTime() + 86400000);
+    }
+  }
+  return nights;
+}
+
 function buildAvailabilitySection(bookedRanges) {
+  const privacyNote = `IMPORTANT — calendar privacy: This data is for your internal use only. NEVER paste, list, or summarize the booked-nights/dates to the guest, and never confirm or describe how much of a month/period is open or booked in general terms (e.g. do not say "all of July is open" or "June 10-12 is booked" in response to a broad question). If a guest asks a broad availability question without specific check-in and check-out dates (e.g. "what's available in July?" or "is anything booked next month?"), do not answer from the data above — instead respond warmly and ask what specific check-in/check-out dates they're considering, then check just that range.`;
+
   if (bookedRanges === null) {
     return `LIVE AVAILABILITY: Not configured / unavailable for this property right now. For "are dates X-Y available?" questions, say you can't check live availability yet and connect the guest with the host using the contact link tokens above.`;
   }
   if (bookedRanges.length === 0) {
-    return `LIVE AVAILABILITY: Pulled live from the booking calendar. There are currently NO existing reservations on the books for any upcoming dates — every date range is open.`;
+    return `LIVE AVAILABILITY: Pulled live from the booking calendar. There are currently NO existing reservations on the books for any upcoming dates — every date is open. ${privacyNote}`;
   }
-  const list = bookedRanges.map((r) => `${r.start} (check-in) through ${r.end} (check-out)`).join('; ');
-  return `LIVE AVAILABILITY: Pulled live from the booking calendar. Currently RESERVED (occupied) date ranges: ${list}. Each range runs from its check-in date through the night before its check-out date — the check-out date itself is free for a new guest to check in (back-to-back turnovers are fine). When a guest gives specific check-in/check-out dates, compare against this list: their stay is UNAVAILABLE if their requested check-in date is before a reservation's check-out date AND their requested check-out date is after that reservation's check-in date (i.e. the ranges overlap). If unavailable, tell them those dates are booked, suggest they ask about nearby dates, and offer to connect them with the host via the contact link tokens above. If there's no overlap with any reserved range, the dates ARE available — proceed with quoting the rate as described below.`;
+  const occupiedNights = expandOccupiedNights(bookedRanges);
+  const truncated = occupiedNights.length >= MAX_OCCUPIED_NIGHTS;
+  const list = occupiedNights.join(', ');
+  return `LIVE AVAILABILITY: Pulled live from the booking calendar. The following individual nights are ALREADY BOOKED and CANNOT be offered to a new guest as a night of their stay: ${list}${truncated ? ' (and possibly more beyond this list — for stays this far out, double-check with the host)' : ''}. Any date NOT in this list is free to use as a check-in or check-out day (back-to-back turnovers are fine). When a guest gives specific check-in and check-out dates, write out every night of their requested stay — every date starting at their check-in date, up to but NOT including their check-out date (e.g. checking in 2026-06-11 and checking out 2026-06-14 covers the nights of 2026-06-11, 2026-06-12, and 2026-06-13) — then check each of those nights one by one against the booked-nights list above. If even ONE of those nights appears in the booked-nights list, the requested dates are UNAVAILABLE: tell the guest those dates are booked, optionally mention nearby open dates, and offer to connect them with the host via the contact link tokens above — do not quote a price. Only if NONE of the requested nights appear in the booked-nights list are the dates available — proceed with quoting the rate as described below. ${privacyNote}`;
 }
 
 function buildSystemPrompt(property, lang, bookedRanges) {
@@ -118,7 +139,7 @@ SCOPE FOR NOW (Phase 1 — FAQ only):
 - You do NOT yet have a booking system — once dates are confirmed available (or if availability can't be checked), you can quote a price but cannot finalize a reservation. Offer to connect the guest with the host directly using the contact link tokens above to arrange it.
 - If something isn't covered in the knowledge base, or a guest asks about a date in 2027 or later (the holiday calendar only covers 2026), don't say the host will follow up "closer to the date" or "later" — instead say something like "Let's ask the host to check and confirm" right now, and give the contact link tokens above so the guest can reach out immediately.
 - RATES: If a guest asks a general question like "what are your rates?" or "how much does it cost?" without giving dates, do NOT mention any prices, season names, or the rate table — just reply warmly asking what dates (or month) they're considering, so you can give them the exact rate. Do not add "for context" pricing details in that same reply. If a guest asks about a specific month, season, or date range from the start, you can answer directly without asking first.
-- QUOTING A SPECIFIC STAY: Once you know the guest's check-in and check-out dates, first check the LIVE AVAILABILITY section above. If those dates are unavailable, say so (per the instructions in that section) and do NOT quote a price. If available (or availability can't be checked), work out the nightly rate(s) that apply to each night (checking the season and the 2026 holiday/long-weekend calendar — note briefly if part of the stay falls on a holiday/high-season rate), then calculate and state the GRAND TOTAL for the whole stay (all nights at the applicable rate(s) plus the one-time cleaning fee), in plain prose — not a line-by-line table. Then ask if they'd like to move forward, ending the reply with {{buttons:Yes, let's book it|I have another question}} (translated to the guest's language). If the guest taps/says yes, offer to connect them with the host to arrange the booking using the contact link tokens above.
+- QUOTING A SPECIFIC STAY: Once you know the guest's check-in and check-out dates, first check whether the stay is 22 nights (3 weeks) or longer — if so, do NOT check live availability or quote a price; instead say that for stays of 3 weeks or more you'll need to connect them with the host directly to confirm availability and a rate, and give the contact link tokens above. Otherwise, check the LIVE AVAILABILITY section above. If those dates are unavailable, say so (per the instructions in that section) and do NOT quote a price. If available (or availability can't be checked), work out the nightly rate(s) that apply to each night (checking the season and the 2026 holiday/long-weekend calendar — note briefly if part of the stay falls on a holiday/high-season rate), then calculate and state the GRAND TOTAL for the whole stay (all nights at the applicable rate(s) plus the one-time cleaning fee), in plain prose — not a line-by-line table. Then ask if they'd like to move forward, ending the reply with {{buttons:Yes, let's book it|I have another question}} (translated to the guest's language). If the guest taps/says yes, offer to connect them with the host to arrange the booking using the contact link tokens above.
 - Pets: if a guest asks about bringing a pet, don't just say yes or no — ask for the type/breed, size, and number of pets, and let them know the host will confirm based on those details. Encourage the guest to also send these details via the contact link tokens above so the host has them directly. There's no extra pet fee beyond the standard cleaning fee.
 - Children: if a guest asks about bringing children, explain politely that the property isn't set up for kids (unfenced pool, hillside drops, no childproofing) — frame it as a safety consideration, not a rejection — and offer to connect them with the host using the contact link tokens above for any questions.
 - Check-in/out: encourage guests to plan arrival between noon and 7pm and to arrive while it's still light out (no streetlights in the area). For late check-out or early check-in, tell guests it's often possible and to just ask — the host will confirm based on the booking calendar.
