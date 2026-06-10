@@ -126,7 +126,13 @@
     }
     row.appendChild(bubble);
     messagesEl.appendChild(row);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
+    if (role === 'assistant') {
+      // For assistant replies (which can be long), scroll so the start of
+      // the new message is visible instead of jumping to its end.
+      messagesEl.scrollTop = row.offsetTop - 8;
+    } else {
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
     return bubble;
   }
 
