@@ -28,22 +28,22 @@
 
   var STRINGS = {
     en: {
-      title: PROPERTY === 'posta-bariloche' ? 'Posta Bariloche — Ask us' : 'Quinta Sierras — Ask us',
+      title: PROPERTY === 'posta-bariloche' ? 'Posta Bariloche — Virtual Concierge' : 'Quinta Sierras — Virtual Concierge',
       placeholder: 'Ask about the property, dates, rates…',
       send: 'Send',
       greeting: "Hi! I'm the virtual host assistant. Ask me about the property, amenities, availability, or rates — I'll do my best to help, and the host will follow up on anything I can't answer.",
       error: "Sorry, something went wrong reaching the assistant. Please try again, or message the host directly via WhatsApp.",
       disabled: "Chat assistant is not configured yet — please use WhatsApp or email to get in touch.",
-      fab: 'Chat with us'
+      fab: 'Ask us anything'
     },
     es: {
-      title: PROPERTY === 'posta-bariloche' ? 'Posta Bariloche — Consultas' : 'Quinta Sierras — Consultas',
+      title: PROPERTY === 'posta-bariloche' ? 'Posta Bariloche — Conserje Virtual' : 'Quinta Sierras — Conserje Virtual',
       placeholder: 'Preguntá sobre la propiedad, fechas, tarifas…',
       send: 'Enviar',
       greeting: 'Hola! Soy el asistente virtual del anfitrión. Preguntame sobre la propiedad, comodidades, disponibilidad o tarifas — voy a ayudarte en lo que pueda, y el anfitrión te va a responder lo que no pueda contestar.',
       error: 'Hubo un problema al contactar al asistente. Probá de nuevo o escribinos directamente por WhatsApp.',
       disabled: 'El asistente de chat todavía no está configurado — escribinos por WhatsApp o email.',
-      fab: 'Chatear'
+      fab: 'Pregúntanos lo que quieras'
     }
   };
   var T = STRINGS[LANG] || STRINGS.en;
@@ -57,6 +57,7 @@
     '<button class="qsc-fab" type="button" aria-label="' + T.fab + '">' +
       '<svg viewBox="0 0 24 24" class="qsc-fab-icon-chat" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.48 3 2 6.94 2 11.8c0 2.6 1.27 4.94 3.34 6.6-.07.78-.36 2.1-1.13 3.6 1.7-.27 3.27-.97 4.4-1.74 1.04.31 2.18.49 3.39.49 5.52 0 10-3.94 10-8.95S17.52 3 12 3z"/></svg>' +
       '<svg viewBox="0 0 24 24" class="qsc-fab-icon-close" xmlns="http://www.w3.org/2000/svg"><path d="M18.3 5.71 12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.3 19.7 2.88 18.3 9.17 12 2.88 5.71 4.3 4.29l6.29 6.3 6.29-6.3z"/></svg>' +
+      '<span class="qsc-fab-label">' + T.fab + '</span>' +
     '</button>' +
     '<div class="qsc-panel" role="dialog" aria-label="' + T.title + '">' +
       '<div class="qsc-header">' +

@@ -20,9 +20,10 @@
 
 /* ── Floating action button ── */
 .qsc-fab {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  height: 52px;
+  min-width: 52px;
+  padding: 0 18px 0 16px;
+  border-radius: 26px;
   border: none;
   cursor: pointer;
   background: var(--qsc-accent);
@@ -31,17 +32,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s, opacity 0.2s;
+  gap: 9px;
+  transition: transform 0.2s, opacity 0.2s, padding 0.2s;
 }
-.qsc-fab:hover { opacity: 0.85; transform: scale(1.06); }
-.qsc-fab svg { width: 26px; height: 26px; fill: currentColor; }
+.qsc-fab:hover { opacity: 0.85; transform: scale(1.04); }
+.qsc-fab svg { width: 24px; height: 24px; fill: currentColor; flex-shrink: 0; }
+.qsc-fab-label {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
 .qsc-fab-icon-close { display: none; }
 .qsc-root.qsc-open .qsc-fab-icon-chat { display: none; }
 .qsc-root.qsc-open .qsc-fab-icon-close { display: block; }
+.qsc-root.qsc-open .qsc-fab-label { display: none; }
+.qsc-root.qsc-open .qsc-fab {
+  min-width: 52px;
+  padding: 0;
+  border-radius: 50%;
+}
 
 @media (max-width: 600px) {
-  .qsc-fab { width: 50px; height: 50px; }
-  .qsc-fab svg { width: 23px; height: 23px; }
+  .qsc-fab { height: 46px; min-width: 46px; padding: 0 14px 0 12px; gap: 7px; }
+  .qsc-fab svg { width: 21px; height: 21px; }
+  .qsc-fab-label { font-size: 13px; }
+  .qsc-root.qsc-open .qsc-fab { min-width: 46px; }
 }
 
 /* ── Panel ── */
