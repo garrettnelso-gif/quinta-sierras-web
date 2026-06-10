@@ -87,12 +87,43 @@
   var history = []; // { role: 'user'|'assistant', content: '...' }
   var greeted = false;
 
+  // Renders text into the bubble as plain text, except for the
+  // "[label](url)" link pattern (used for WhatsApp/Email contact links),
+  // which becomes a real clickable <a>. Only http(s) and mailto URLs are
+  // allowed; everything else stays as escaped plain text.
+  var LINK_PATTERN = /\[([^\[\]]+)\]\((https?:\/\/[^\s()]+|mailto:[^\s()]+)\)/g;
+
+  function renderRichText(container, text) {
+    var lastIndex = 0;
+    var match;
+    LINK_PATTERN.lastIndex = 0;
+    while ((match = LINK_PATTERN.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        container.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+      }
+      var a = document.createElement('a');
+      a.href = match[2];
+      a.textContent = match[1];
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      container.appendChild(a);
+      lastIndex = match.index + match[0].length;
+    }
+    if (lastIndex < text.length) {
+      container.appendChild(document.createTextNode(text.slice(lastIndex)));
+    }
+  }
+
   function addMessage(role, text) {
     var row = document.createElement('div');
     row.className = 'qsc-msg qsc-msg-' + role;
     var bubble = document.createElement('div');
     bubble.className = 'qsc-bubble';
-    bubble.textContent = text;
+    if (role === 'assistant') {
+      renderRichText(bubble, text);
+    } else {
+      bubble.textContent = text;
+    }
     row.appendChild(bubble);
     messagesEl.appendChild(row);
     messagesEl.scrollTop = messagesEl.scrollHeight;

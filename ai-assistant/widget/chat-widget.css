@@ -129,6 +129,12 @@
   border: 1px solid var(--qsc-border);
   border-bottom-left-radius: 3px;
 }
+.qsc-bubble a {
+  color: var(--qsc-accent);
+  font-weight: 500;
+  text-decoration: underline;
+}
+.qsc-bubble a:hover { opacity: 0.8; }
 
 /* Typing indicator */
 .qsc-typing { display: flex; gap: 4px; padding: 13px; align-items: center; }
