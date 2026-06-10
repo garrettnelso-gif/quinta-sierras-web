@@ -243,6 +243,29 @@ nav {
 .btn-wa { font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; background: transparent; color: var(--black); border: 1px solid var(--gray-light); text-decoration: none; border-radius: 2px; transition: border-color 0.2s; }
 .btn-wa:hover { border-color: var(--black); }
 
+/* ── FLOATING WHATSAPP BUTTON ── */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: var(--black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  z-index: 200;
+  transition: transform 0.2s, background 0.2s;
+}
+.wa-float:hover { background: var(--gray); transform: scale(1.06); }
+.wa-float svg { width: 28px; height: 28px; fill: var(--white); }
+@media (max-width: 600px) {
+  .wa-float { bottom: 16px; right: 16px; width: 50px; height: 50px; }
+  .wa-float svg { width: 25px; height: 25px; }
+}
+
 /* ── FOOTER ── */
 footer { background: var(--black); color: rgba(255,255,255,0.45); padding: 48px 40px; }
 .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
@@ -759,6 +782,13 @@ nav { animation: sunriseNav 70s linear infinite; }
     <a href="https://postabariloche.com" target="_blank" style="font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Posta Bariloche</a>
   </div>
 </footer>
+
+<a href="https://wa.me/543518749830?text=Hello%2C%20I'm%20interested%20in%20booking%20Quinta%20Sierras." class="wa-float en" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.34.65 4.527 1.78 6.392L4 29l7.81-1.74A11.93 11.93 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.8a9.76 9.76 0 0 1-4.98-1.36l-.357-.21-4.633 1.032 1.05-4.516-.232-.367A9.74 9.74 0 0 1 5.2 15c0-5.96 4.845-10.8 10.804-10.8C21.96 4.2 26.8 9.04 26.8 15S21.96 24.8 16.004 24.8zm5.62-7.34c-.307-.154-1.816-.896-2.097-.998-.281-.103-.486-.154-.69.154-.205.307-.792.997-.972 1.202-.179.205-.358.23-.665.077-.307-.154-1.295-.477-2.467-1.523-.912-.813-1.527-1.817-1.706-2.124-.179-.307-.019-.473.135-.626.138-.138.307-.358.46-.537.154-.179.205-.307.307-.512.103-.205.051-.384-.026-.538-.077-.154-.69-1.663-.945-2.278-.249-.598-.502-.517-.69-.527l-.588-.01a1.13 1.13 0 0 0-.818.384c-.281.307-1.073 1.05-1.073 2.56s1.099 2.97 1.252 3.175c.154.205 2.163 3.303 5.24 4.632.732.316 1.303.505 1.748.646.734.233 1.402.2 1.93.121.589-.088 1.816-.742 2.072-1.46.256-.717.256-1.331.179-1.46-.077-.128-.282-.205-.589-.358z"/></svg>
+</a>
+<a href="https://wa.me/543518749830?text=Hola%2C%20estoy%20interesado%2Fa%20en%20reservar%20Quinta%20Sierras." class="wa-float es flex" target="_blank" aria-label="Chatear por WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.34.65 4.527 1.78 6.392L4 29l7.81-1.74A11.93 11.93 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.8a9.76 9.76 0 0 1-4.98-1.36l-.357-.21-4.633 1.032 1.05-4.516-.232-.367A9.74 9.74 0 0 1 5.2 15c0-5.96 4.845-10.8 10.804-10.8C21.96 4.2 26.8 9.04 26.8 15S21.96 24.8 16.004 24.8zm5.62-7.34c-.307-.154-1.816-.896-2.097-.998-.281-.103-.486-.154-.69.154-.205.307-.792.997-.972 1.202-.179.205-.358.23-.665.077-.307-.154-1.295-.477-2.467-1.523-.912-.813-1.527-1.817-1.706-2.124-.179-.307-.019-.473.135-.626.138-.138.307-.358.46-.537.154-.179.205-.307.307-.512.103-.205.051-.384-.026-.538-.077-.154-.69-1.663-.945-2.278-.249-.598-.502-.517-.69-.527l-.588-.01a1.13 1.13 0 0 0-.818.384c-.281.307-1.073 1.05-1.073 2.56s1.099 2.97 1.252 3.175c.154.205 2.163 3.303 5.24 4.632.732.316 1.303.505 1.748.646.734.233 1.402.2 1.93.121.589-.088 1.816-.742 2.072-1.46.256-.717.256-1.331.179-1.46-.077-.128-.282-.205-.589-.358z"/></svg>
+</a>
 
 <script>
   function setLang(lang) {
