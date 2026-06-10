@@ -819,5 +819,17 @@ nav { animation: sunriseNav 70s linear infinite; }
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 </script>
+
+<!-- AI CONCIERGE CHAT WIDGET -->
+<link rel="stylesheet" href="ai-assistant/widget/chat-widget.css">
+<script>
+  window.QS_CHAT_CONFIG = {
+    property: "quinta-sierras",
+    endpoint: "https://quinta-sierras-concierge.garrettnelso.workers.dev",
+    lang: document.body.classList.contains('lang-es') ? 'es' : 'en',
+    accent: "#111110"
+  };
+</script>
+<script src="ai-assistant/widget/chat-widget.js" defer></script>
 </body>
 </html>

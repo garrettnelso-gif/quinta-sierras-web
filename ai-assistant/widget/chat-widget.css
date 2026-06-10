@@ -1,0 +1,182 @@
+/* Quinta Sierras / Posta Bariloche — AI Concierge Chat Widget styles */
+
+.qsc-root {
+  --qsc-accent: #111110;
+  --qsc-bg: #ffffff;
+  --qsc-bg-alt: #F8F7F4;
+  --qsc-text: #111110;
+  --qsc-text-muted: #6B6860;
+  --qsc-border: #E4E2DC;
+  --qsc-font: 'DM Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--qsc-font);
+  position: fixed;
+  bottom: 24px;
+  right: 92px;
+  z-index: 999;
+}
+@media (max-width: 600px) {
+  .qsc-root { right: 16px; bottom: 84px; }
+}
+
+/* ── Floating action button ── */
+.qsc-fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: var(--qsc-accent);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.qsc-fab:hover { opacity: 0.85; transform: scale(1.06); }
+.qsc-fab svg { width: 26px; height: 26px; fill: currentColor; }
+.qsc-fab-icon-close { display: none; }
+.qsc-root.qsc-open .qsc-fab-icon-chat { display: none; }
+.qsc-root.qsc-open .qsc-fab-icon-close { display: block; }
+
+@media (max-width: 600px) {
+  .qsc-fab { width: 50px; height: 50px; }
+  .qsc-fab svg { width: 23px; height: 23px; }
+}
+
+/* ── Panel ── */
+.qsc-panel {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  height: 480px;
+  max-height: calc(100vh - 140px);
+  background: var(--qsc-bg);
+  border: 1px solid var(--qsc-border);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.qsc-root.qsc-open .qsc-panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.qsc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--qsc-accent);
+  color: #fff;
+}
+.qsc-header-title {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.qsc-header-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+.qsc-header-close:hover { color: #fff; }
+
+/* ── Messages ── */
+.qsc-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--qsc-bg-alt);
+}
+.qsc-msg { display: flex; }
+.qsc-msg-user { justify-content: flex-end; }
+.qsc-msg-assistant { justify-content: flex-start; }
+.qsc-bubble {
+  max-width: 80%;
+  padding: 10px 13px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 300;
+  white-space: pre-wrap;
+}
+.qsc-msg-user .qsc-bubble {
+  background: var(--qsc-accent);
+  color: #fff;
+  border-bottom-right-radius: 3px;
+}
+.qsc-msg-assistant .qsc-bubble {
+  background: #fff;
+  color: var(--qsc-text);
+  border: 1px solid var(--qsc-border);
+  border-bottom-left-radius: 3px;
+}
+
+/* Typing indicator */
+.qsc-typing { display: flex; gap: 4px; padding: 13px; align-items: center; }
+.qsc-typing span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--qsc-text-muted);
+  display: inline-block;
+  animation: qsc-bounce 1.2s infinite ease-in-out;
+}
+.qsc-typing span:nth-child(2) { animation-delay: 0.15s; }
+.qsc-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes qsc-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ── Input form ── */
+.qsc-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--qsc-border);
+  background: var(--qsc-bg);
+}
+.qsc-input {
+  flex: 1;
+  border: 1px solid var(--qsc-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: var(--qsc-font);
+  outline: none;
+  color: var(--qsc-text);
+  background: var(--qsc-bg);
+}
+.qsc-input:focus { border-color: var(--qsc-accent); }
+.qsc-send {
+  border: none;
+  border-radius: 6px;
+  padding: 0 16px;
+  background: var(--qsc-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.qsc-send:hover { opacity: 0.8; }
+.qsc-input:disabled, .qsc-send:disabled { opacity: 0.6; }
