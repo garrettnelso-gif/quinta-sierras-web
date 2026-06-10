@@ -221,8 +221,8 @@ kilometres from the property.
 
 ## 11. Contact
 
-- **Email:** quintasierras@gmail.com
-- **WhatsApp:** +54 351 874 9830
+- **Email:** quintasierras@gmail.com (link: mailto:quintasierras@gmail.com)
+- **WhatsApp:** +54 351 874 9830 (direct chat link: https://wa.me/5493518749830)
 - **Google Maps:** https://maps.app.goo.gl/BKaoHpUmwYfbApc9A
 
 ---
