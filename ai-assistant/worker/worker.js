@@ -2,8 +2,9 @@
 // ---------------------------------------------------------
 // A small Cloudflare Worker that proxies chat messages from the website
 // widget (ai-assistant/widget/chat-widget.js) to the Claude API, grounded
-// in the property knowledge base. Phase 1 scope: FAQ-answering only — no
-// availability checks, rate quoting, or lead capture yet.
+// in the property knowledge base, plus live availability pulled from the
+// property's Airbnb iCal export (Quinta Sierras only for now). No booking
+// system or lead-capture workflow yet.
 //
 // Deploy: see ai-assistant/README.md
 
@@ -28,7 +29,70 @@ function corsHeaders(origin) {
   };
 }
 
-function buildSystemPrompt(property, lang) {
+// ---- Live availability (Airbnb iCal) ----
+//
+// Pulls the property's Airbnb "Export Calendar" feed (an .ics file listing
+// existing reservations as VEVENT blocks) and turns it into a list of
+// booked date ranges we can hand to the model. The feed URL is treated as a
+// secret (it grants read access to the booking calendar) and is configured
+// via `wrangler secret put <PROPERTY>_ICAL_URL` — never hardcoded here.
+
+function parseICalBookedRanges(icsText) {
+  const ranges = [];
+  const veventRegex = /BEGIN:VEVENT([\s\S]*?)END:VEVENT/g;
+  let match;
+  while ((match = veventRegex.exec(icsText)) !== null) {
+    const block = match[1];
+    const startMatch = block.match(/DTSTART(?:;VALUE=DATE)?:(\d{8})/);
+    const endMatch = block.match(/DTEND(?:;VALUE=DATE)?:(\d{8})/);
+    if (startMatch && endMatch) {
+      ranges.push({
+        start: formatICalDate(startMatch[1]),
+        end: formatICalDate(endMatch[1]),
+      });
+    }
+  }
+  return ranges;
+}
+
+function formatICalDate(d) {
+  // "20260615" -> "2026-06-15"
+  return `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6, 8)}`;
+}
+
+// Fetches and parses the iCal feed for a property. Returns:
+//  - an array of { start, end } booked ranges (end is the checkout date,
+//    exclusive; sorted, limited to upcoming/ongoing bookings), or
+//  - null if no feed is configured or the fetch/parse failed.
+async function fetchBookedRanges(icalUrl) {
+  if (!icalUrl) return null;
+  try {
+    const res = await fetch(icalUrl, { cf: { cacheTtl: 1800, cacheEverything: true } });
+    if (!res.ok) return null;
+    const text = await res.text();
+    const ranges = parseICalBookedRanges(text);
+    const today = new Date().toISOString().slice(0, 10);
+    return ranges
+      .filter((r) => r.end >= today)
+      .sort((a, b) => a.start.localeCompare(b.start));
+  } catch (e) {
+    console.error('iCal fetch error:', e);
+    return null;
+  }
+}
+
+function buildAvailabilitySection(bookedRanges) {
+  if (bookedRanges === null) {
+    return `LIVE AVAILABILITY: Not configured / unavailable for this property right now. For "are dates X-Y available?" questions, say you can't check live availability yet and connect the guest with the host using the contact link tokens above.`;
+  }
+  if (bookedRanges.length === 0) {
+    return `LIVE AVAILABILITY: Pulled live from the booking calendar. There are currently NO existing reservations on the books for any upcoming dates — every date range is open.`;
+  }
+  const list = bookedRanges.map((r) => `${r.start} (check-in) through ${r.end} (check-out)`).join('; ');
+  return `LIVE AVAILABILITY: Pulled live from the booking calendar. Currently RESERVED (occupied) date ranges: ${list}. Each range runs from its check-in date through the night before its check-out date — the check-out date itself is free for a new guest to check in (back-to-back turnovers are fine). When a guest gives specific check-in/check-out dates, compare against this list: their stay is UNAVAILABLE if their requested check-in date is before a reservation's check-out date AND their requested check-out date is after that reservation's check-in date (i.e. the ranges overlap). If unavailable, tell them those dates are booked, suggest they ask about nearby dates, and offer to connect them with the host via the contact link tokens above. If there's no overlap with any reserved range, the dates ARE available — proceed with quoting the rate as described below.`;
+}
+
+function buildSystemPrompt(property, lang, bookedRanges) {
   const kb = property === 'posta-bariloche' ? POSTA_BARILOCHE_KB : QUINTA_SIERRAS_KB;
   const propertyName = property === 'posta-bariloche' ? 'Posta Bariloche' : 'Quinta Sierras';
   const langName = lang === 'es' ? 'Spanish' : 'English';
@@ -46,12 +110,15 @@ QUICK REPLY BUTTONS — use this token when you ask the guest a short either/or 
 - {{buttons:Option A|Option B}} — renders as up to 3 tappable buttons; whichever the guest taps is sent back as their next message, exactly as written.
 This token must be the very last thing in your reply, on its own, with nothing after it. Keep each option short (2-5 words), in the same language you're replying in, e.g. {{buttons:Yes, let's book it|I have another question}}. Never combine this token with {{whatsapp:...}} or {{email:...}} in the same message — offer those in a later message once the guest responds.
 
+${buildAvailabilitySection(bookedRanges)}
+
 SCOPE FOR NOW (Phase 1 — FAQ only):
 - Answer questions about the property using ONLY the knowledge base below: description, amenities, sleeping arrangements, rates, house rules, location, and local recommendations.
-- You do NOT yet have access to a live availability calendar or a booking system. If a guest asks "are dates X-Y available?" or wants to book, tell them you can't check live availability yet. Then immediately offer to connect them with the host directly using the contact link tokens above.
+- For "are dates X-Y available?" questions, use the LIVE AVAILABILITY section above to answer directly — do not say you can't check availability if live data is provided.
+- You do NOT yet have a booking system — once dates are confirmed available (or if availability can't be checked), you can quote a price but cannot finalize a reservation. Offer to connect the guest with the host directly using the contact link tokens above to arrange it.
 - If something isn't covered in the knowledge base, or a guest asks about a date in 2027 or later (the holiday calendar only covers 2026), don't say the host will follow up "closer to the date" or "later" — instead say something like "Let's ask the host to check and confirm" right now, and give the contact link tokens above so the guest can reach out immediately.
 - RATES: If a guest asks a general question like "what are your rates?" or "how much does it cost?" without giving dates, do NOT mention any prices, season names, or the rate table — just reply warmly asking what dates (or month) they're considering, so you can give them the exact rate. Do not add "for context" pricing details in that same reply. If a guest asks about a specific month, season, or date range from the start, you can answer directly without asking first.
-- QUOTING A SPECIFIC STAY: Once you know the guest's check-in and check-out dates, work out the nightly rate(s) that apply to each night (checking the season and the 2026 holiday/long-weekend calendar — note briefly if part of the stay falls on a holiday/high-season rate), then calculate and state the GRAND TOTAL for the whole stay (all nights at the applicable rate(s) plus the one-time cleaning fee), in plain prose — not a line-by-line table. Then ask if they'd like to move forward, ending the reply with {{buttons:Yes, let's book it|I have another question}} (translated to the guest's language). If the guest taps/says yes, offer to connect them with the host to arrange the booking using the contact link tokens above.
+- QUOTING A SPECIFIC STAY: Once you know the guest's check-in and check-out dates, first check the LIVE AVAILABILITY section above. If those dates are unavailable, say so (per the instructions in that section) and do NOT quote a price. If available (or availability can't be checked), work out the nightly rate(s) that apply to each night (checking the season and the 2026 holiday/long-weekend calendar — note briefly if part of the stay falls on a holiday/high-season rate), then calculate and state the GRAND TOTAL for the whole stay (all nights at the applicable rate(s) plus the one-time cleaning fee), in plain prose — not a line-by-line table. Then ask if they'd like to move forward, ending the reply with {{buttons:Yes, let's book it|I have another question}} (translated to the guest's language). If the guest taps/says yes, offer to connect them with the host to arrange the booking using the contact link tokens above.
 - Pets: if a guest asks about bringing a pet, don't just say yes or no — ask for the type/breed, size, and number of pets, and let them know the host will confirm based on those details. Encourage the guest to also send these details via the contact link tokens above so the host has them directly. There's no extra pet fee beyond the standard cleaning fee.
 - Children: if a guest asks about bringing children, explain politely that the property isn't set up for kids (unfenced pool, hillside drops, no childproofing) — frame it as a safety consideration, not a rejection — and offer to connect them with the host using the contact link tokens above for any questions.
 - Check-in/out: encourage guests to plan arrival between noon and 7pm and to arrive while it's still light out (no streetlights in the area). For late check-out or early check-in, tell guests it's often possible and to just ask — the host will confirm based on the booking calendar.
@@ -102,6 +169,9 @@ export default {
       .map((m) => ({ role: m.role, content: m.content.slice(0, 2000) }));
     messages.push({ role: 'user', content: message });
 
+    const icalUrl = property === 'posta-bariloche' ? env.POSTA_BARILOCHE_ICAL_URL : env.QUINTA_SIERRAS_ICAL_URL;
+    const bookedRanges = await fetchBookedRanges(icalUrl);
+
     try {
       const apiRes = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
@@ -113,7 +183,7 @@ export default {
         body: JSON.stringify({
           model: MODEL,
           max_tokens: 500,
-          system: buildSystemPrompt(property, lang),
+          system: buildSystemPrompt(property, lang, bookedRanges),
           messages,
         }),
       });

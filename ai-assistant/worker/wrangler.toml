@@ -5,4 +5,9 @@ compatibility_date = "2024-09-01"
 # The Anthropic API key is set as a secret, NOT here:
 #   wrangler secret put ANTHROPIC_API_KEY
 #
-# (Do not commit API keys to this repo.)
+# Live availability (Quinta Sierras) is read from the Airbnb calendar export
+# URL, also set as a secret since it grants read access to the booking
+# calendar:
+#   wrangler secret put QUINTA_SIERRAS_ICAL_URL
+#
+# (Do not commit API keys or calendar URLs to this repo.)

@@ -48,6 +48,11 @@ the chat isn't configured yet and point them to WhatsApp/email.
    - `cd ai-assistant/worker`
    - `wrangler login` (one-time, opens a browser to your Cloudflare account)
    - `wrangler secret put ANTHROPIC_API_KEY` and paste your key when prompted
+   - `wrangler secret put QUINTA_SIERRAS_ICAL_URL` and paste the Airbnb
+     calendar export URL (Airbnb listing → Availability → Sync calendars →
+     Export calendar → Copy). This powers live availability checking for
+     Quinta Sierras; Posta Bariloche doesn't have one configured yet, so it
+     keeps deferring to the host for date questions.
    - `wrangler deploy`
    - This prints a URL like `https://quinta-sierras-concierge.<your-subdomain>.workers.dev`
 
@@ -69,6 +74,10 @@ the chat isn't configured yet and point them to WhatsApp/email.
 - Conversation history is not stored anywhere — each browser session is
   independent, and nothing is logged except basic error messages in
   Cloudflare's dashboard.
-- Next phases (per the original plan): Airbnb iCal availability checking,
-  rate quoting from a structured rate table, and lead-capture with an
-  approval workflow sent to your email/WhatsApp.
+- Live availability for Quinta Sierras is pulled from the Airbnb iCal export
+  (`QUINTA_SIERRAS_ICAL_URL` secret), cached at Cloudflare's edge for ~30
+  minutes. If the feed is unreachable, the assistant falls back to deferring
+  date questions to the host, as before.
+- Next phases (per the original plan): rate quoting from a structured rate
+  table, and lead-capture with an approval workflow sent to your
+  email/WhatsApp.
