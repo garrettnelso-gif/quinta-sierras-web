@@ -113,12 +113,12 @@ nav {
 .body-serif p + p { margin-top: 18px; }
 
 /* ── SPECS SIDEBAR ── */
-.specs-sidebar { border-top: 2px solid var(--black); padding-top: 24px; position: sticky; top: 80px; }
-.spec-row { padding: 13px 0; border-bottom: 1px solid var(--gray-light); }
-.spec-label { font-family: var(--sans); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 4px; }
-.spec-value { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--black); line-height: 1.5; }
+.specs-sidebar { position: sticky; top: 80px; }
+.spec-row { display: grid; grid-template-columns: 128px 1fr; gap: 18px; padding: 16px 0; border-top: 1px solid var(--gray-light); align-items: baseline; }
+.spec-label { font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-mid); }
+.spec-value { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--black); line-height: 1.55; }
 .spec-value em { font-style: normal; }
-.sidebar-cta { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+.sidebar-cta { margin-top: 0; padding-top: 28px; border-top: 1px solid var(--gray-light); display: flex; flex-direction: column; gap: 10px; }
 .btn-black { display: block; text-align: center; font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 24px; background: var(--black); color: var(--white); text-decoration: none; border-radius: 2px; transition: opacity 0.2s; }
 .btn-black:hover { opacity: 0.75; }
 .btn-outline { display: block; text-align: center; font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 24px; background: transparent; color: var(--black); border: 1px solid var(--gray-light); text-decoration: none; border-radius: 2px; transition: border-color 0.2s; }
@@ -341,7 +341,7 @@ nav { animation: sunriseNav 70s linear infinite; }
 
 /* ── V4: dawn cloud ── */
 .hero { position: relative; }
-.mist { position: absolute; inset: 0; pointer-events: none; z-index: 5; overflow: hidden; }
+.mist { position: absolute; inset: 0; pointer-events: none; z-index: 101; overflow: hidden; }
 .mist canvas { width: 100%; height: 100%; display: block; }
 
 </style>
@@ -843,8 +843,8 @@ nav { animation: sunriseNav 70s linear infinite; }
   /* hero: slow settle */
   const heroImg = document.querySelector('.hero-img img');
   if (heroImg && !rm) {
-    gsap.fromTo(heroImg, { scale: 1.08 }, { scale: 1, duration: 2.2, ease: 'power2.out' });
-    gsap.to(heroImg, { yPercent: 10, ease: 'none',
+    gsap.fromTo(heroImg, { scale: 1.16 }, { scale: 1.08, duration: 2.2, ease: 'power2.out' });
+    gsap.fromTo(heroImg, { yPercent: -3 }, { yPercent: 3, ease: 'none',
       scrollTrigger: { trigger: '.hero-img', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
   const heroInner = document.querySelector('.hero-inner');
@@ -863,13 +863,6 @@ nav { animation: sunriseNav 70s linear infinite; }
   if (cells.length) gsap.fromTo(cells, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.05,
     scrollTrigger: { trigger: '.gallery-grid', start: 'top 85%' } });
 
-  /* $140 count-up */
-  const rate = document.querySelector('.rate-big');
-  if (rate) { const o = { v: 0 };
-    gsap.to(o, { v: 140, duration: 1.4, ease: 'power2.out',
-      onUpdate(){ rate.textContent = '$' + Math.round(o.v); },
-      scrollTrigger: { trigger: rate, start: 'top 85%', once: true } });
-  }
 
   /* dawn cloud — one misty bank rolls left→right across the hero during the dark phase */
   (function cloud(){
@@ -883,10 +876,12 @@ nav { animation: sunriseNav 70s linear infinite; }
       c.width = W; c.height = H;
       const x2 = c.getContext('2d');
       for (let i = 0; i < puffs; i++) {
-        const px = W*0.5 + (Math.random()-0.5) * W*0.82;
-        const py = H*0.55 + (Math.random()-0.5) * H*0.6;
+        const px = W*0.5 + (Math.random()-0.5) * W*0.78;
+        const py = H*0.5 + (Math.random()-0.5) * H*0.52;
         const centric = 1 - Math.min(1, Math.abs(px - W*0.5)/(W*0.5));
-        const r = (H*0.10) + Math.random() * H*0.30 * (0.5 + centric);
+        let r = (H*0.10) + Math.random() * H*0.30 * (0.5 + centric);
+        r = Math.min(r, px, py, W - px, H - py);          // never touch the tile edge
+        if (r < H*0.04) continue;
         const a = (0.06 + Math.random()*0.11) * (0.35 + centric);
         const g = x2.createRadialGradient(px, py, 0, px, py, r);
         g.addColorStop(0, 'rgba(255,255,255,'+a.toFixed(3)+')');
@@ -896,40 +891,54 @@ nav { animation: sunriseNav 70s linear infinite; }
       }
       return c;
     }
-    const big  = makeCloud(1400, 520, 150);
-    const wisp = makeCloud(900, 300, 70);
+    const big  = makeCloud(1400, 520, 170);
+    const wisp = makeCloud(900, 300, 80);
+    const low  = makeCloud(1700, 340, 110);   // long flat bank for wave 2
 
     function resize(){ canvas.width = wrap.clientWidth; canvas.height = wrap.clientHeight; }
     resize(); window.addEventListener('resize', resize);
 
     const CYCLE = 70000, t0 = performance.now();
-    const W_START = 0.04, W_LEN = 0.24;  // enters ~3s in, clears before the gold
+    // wave 1: main bank through the dark dawn; wave 2: lower, thinner, slower, lingers into the light
+    const W1 = { start: 0.08, len: 0.30 };   // big bank — overlaps the low wave, lingers as light warms
+    const W2 = { start: 0.03, len: 0.30 };   // low thin bank — leads
+
+    function phase(p, w){ const u = ((p - w.start + 1) % 1) / w.len; return u < 1 ? u : -1; }
 
     function draw(now){
       requestAnimationFrame(draw);
       const p = ((now - t0) / CYCLE) % 1;
-      const u = ((p - W_START + 1) % 1) / W_LEN;
+      const u1 = phase(p, W1), u2 = phase(p, W2);
       const w = canvas.width, h = canvas.height;
-      if (u >= 1) { if (canvas.__dirty) { ctx.clearRect(0,0,w,h); canvas.__dirty = false; } return; }
+      if (u1 < 0 && u2 < 0) { if (canvas.__dirty) { ctx.clearRect(0,0,w,h); canvas.__dirty = false; } return; }
       ctx.clearRect(0, 0, w, h);
       canvas.__dirty = true;
-      const env = Math.sin(u * Math.PI);
       const wob = Math.sin(now*0.0004) * h*0.03;
 
-      const bw = Math.max(w*0.85, 900), bh = bw*0.37;
-      const bx = -bw + u * (w + 2*bw);
-      ctx.globalAlpha = Math.min(1, env*1.1);
-      ctx.drawImage(big, bx, h*0.30 - bh/2 + wob, bw, bh);
-      ctx.drawImage(big, bx - bw*0.08, h*0.38 - bh/2 - wob, bw*1.05, bh);
+      if (u1 >= 0) {
+        const env = Math.sin(Math.PI * Math.pow(u1, 0.6));   // swells fast, clears slowly with the warming light
+        const bw = Math.max(w*1.25, 1300), bh = bw*0.5;
+        const bx = -bw*0.8 + u1 * (w*0.8 + bw);   // shorter drift — it thins out rather than rushing off
+        ctx.globalAlpha = Math.min(1, env*1.3);
+        ctx.drawImage(big, bx, h*0.42 - bh/2 + wob, bw, bh);                 // body
+        ctx.drawImage(big, bx - bw*0.10, -bh*0.28 - wob, bw*1.08, bh*0.85);  // crown — up into the header
+        ctx.drawImage(big, bx + bw*0.06, h*0.78 - bh/2 - wob, bw, bh*0.8);   // skirt — down to the grasses
+        const ww = bw*0.5, wh = ww*0.33;
+        const wx = -ww + Math.min(1, u1*1.18) * (w + 2*ww);
+        ctx.globalAlpha = Math.min(1, env) * 0.8;
+        ctx.drawImage(wisp, wx, h*0.06 - wh/2 - wob, ww, wh);
+      }
 
-      const ww = bw*0.55, wh = ww*0.33;
-      const wx = -ww + Math.min(1, u*1.18) * (w + 2*ww);
-      ctx.globalAlpha = Math.min(1, env) * 0.8;
-      ctx.drawImage(wisp, wx, h*0.12 - wh/2 - wob, ww, wh);
-
-      const vx = -bw + Math.max(0, (u-0.12)/0.88) * (w + 2*bw);
-      ctx.globalAlpha = Math.min(1, env) * 0.45;
-      ctx.drawImage(big, vx, h*0.62 - bh/2 - wob, bw*1.15, bh*0.9);
+      if (u2 >= 0) {
+        const env2 = Math.sin(u2 * Math.PI);
+        const bw2 = Math.max(w*1.15, 1200), bh2 = bw2*0.2;    // long, flat, natural proportions
+        const bx2 = -bw2 + u2 * (w + 2*bw2);
+        ctx.globalAlpha = Math.min(1, env2) * 0.6;           // thinner
+        ctx.drawImage(low, bx2, h*0.66 - bh2/2 - wob*0.6, bw2, bh2);
+        const wx2 = -bw2 + Math.min(1, u2*1.12) * (w + 2*bw2);
+        ctx.globalAlpha = Math.min(1, env2) * 0.38;
+        ctx.drawImage(low, wx2, h*0.80 - bh2*0.35 + wob*0.4, bw2*0.85, bh2*0.75);
+      }
       ctx.globalAlpha = 1;
     }
     requestAnimationFrame(draw);
