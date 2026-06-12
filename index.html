@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-86B9NBD3JG"></script>
 <script>
@@ -18,7 +19,7 @@
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.quintasierras.com/">
+<meta property="og:url" content="https://www.quintasierras.com/v4/">
 <meta property="og:title" content="Quinta Sierras — Private Villa · Córdoba Sierras, Argentina">
 <meta property="og:description" content="A secluded private villa with pool and panoramic valley views in the Sierras de Córdoba. 2 bedrooms · 4 guests · 3 night minimum.">
 <meta property="og:image" content="https://www.quintasierras.com/PXL_20250316_133446486.jpg">
@@ -88,7 +89,7 @@ nav {
 .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 .hero-overlay { display: none; }
 .hero-inner { display: flex; flex-direction: column; justify-content: flex-end; padding: 60px 40px 30% 56px; background: var(--white); position: relative; overflow: hidden; animation: sunriseBody 70s linear infinite; }
-.hero-inner::before { content: ''; position: absolute; inset: 0; background: url('olive print.webp') center center / cover no-repeat; opacity: 0.13; pointer-events: none; }
+.hero-inner::before { content: ''; position: absolute; inset: 0; background: url('../olive print.webp') center center / cover no-repeat; opacity: 0.13; pointer-events: none; }
 .hero-location { font-family: var(--sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 20px; }
 .hero h1 { font-family: var(--logo); font-size: clamp(52px, 5.5vw, 90px); font-weight: 400; line-height: 0.92; letter-spacing: 0.04em; color: var(--black); }
 .hero h1 em { font-style: italic; }
@@ -337,6 +338,12 @@ nav { animation: sunriseNav 70s linear infinite; }
 /* ── REVEAL ── */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: none; }
+
+/* ── V4: dawn cloud ── */
+.hero { position: relative; }
+.mist { position: absolute; inset: 0; pointer-events: none; z-index: 5; overflow: hidden; }
+.mist canvas { width: 100%; height: 100%; display: block; }
+
 </style>
 </head>
 <body>
@@ -376,13 +383,14 @@ nav { animation: sunriseNav 70s linear infinite; }
 
 <!-- HERO -->
 <div class="hero">
+  <div class="mist" aria-hidden="true"><canvas id="mistCanvas"></canvas></div>
   <div class="hero-inner">
     <div class="hero-location">Barrio Paso de Piedra · Córdoba, Argentina</div>
     <h1 class="en wordmark">Quinta<br><em>Sierras</em></h1>
     <h1 class="es wordmark">Quinta<br><em>Sierras</em></h1>
   </div>
   <div class="hero-img">
-    <img src="house-dusk.avif" alt="Quinta Sierras at dusk — steel-frame windows glowing over the valley">
+    <img src="../house-dusk.avif" alt="Quinta Sierras at dusk — steel-frame windows glowing over the valley">
   </div>
 </div>
 
@@ -463,8 +471,8 @@ nav { animation: sunriseNav 70s linear infinite; }
 
 <!-- SIDE-BY-SIDE: exterior + interior, edge to edge, no crop -->
 <div class="img-scale-wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
-  <img src="house-exterior.jpg" alt="House and pool exterior" style="width:100%;height:auto;display:block;">
-  <img src="living-room-stove.avif" alt="Open-plan living room with wood stove at golden hour" style="width:100%;height:auto;display:block;">
+  <img src="../house-exterior.jpg" alt="House and pool exterior" style="width:100%;height:auto;display:block;">
+  <img src="../living-room-stove.avif" alt="Open-plan living room with wood stove at golden hour" style="width:100%;height:auto;display:block;">
 </div>
 
 <!-- POOL EDITORIAL -->
@@ -485,13 +493,13 @@ nav { animation: sunriseNav 70s linear infinite; }
 
 <!-- POOL TWO-UP -->
 <div class="two-up">
-  <img src="IMG-20250605-WA0030.jpg" alt="Pool and valley view through the pergola at golden hour">
-  <img src="PXL_20250316_133446486.jpg" alt="Pool edge with panoramic valley view">
+  <img src="../IMG-20250605-WA0030.jpg" alt="Pool and valley view through the pergola at golden hour">
+  <img src="../PXL_20250316_133446486.jpg" alt="Pool edge with panoramic valley view">
 </div>
 <div style="height:3px;"></div>
 <div class="two-up">
-  <img src="PXL_20250126_191449901.jpg" alt="Pool with loungers and native garden">
-  <img src="PXL_20250627_165851963.jpg" alt="Outdoor rain shower on the terrace">
+  <img src="../PXL_20250126_191449901.jpg" alt="Pool with loungers and native garden">
+  <img src="../PXL_20250627_165851963.jpg" alt="Outdoor rain shower on the terrace">
 </div>
 
 <!-- PULL QUOTE -->
@@ -500,6 +508,7 @@ nav { animation: sunriseNav 70s linear infinite; }
   <blockquote class="es">"La casa es increíble — bien diseñada con mucho gusto. Vistas privilegiadas de las sierras desde casi cada rincón. La ducha exterior tiene agua caliente — un detalle hermoso."</blockquote>
   <cite>Feli · Córdoba</cite>
 </div>
+
 
 <!-- AMENITIES -->
 <div class="amenities-wrap reveal">
@@ -524,7 +533,7 @@ nav { animation: sunriseNav 70s linear infinite; }
 </div>
 
 <!-- FULL-WIDTH IMAGE -->
-<div class="img-scale-wrap"><img src="PXL_20251216_112250440.jpg" alt="Garden and pool with native forest and valley views" class="full-img-hero"></div>
+<div class="img-scale-wrap"><img src="../PXL_20251216_112250440.jpg" alt="Garden and pool with native forest and valley views" class="full-img-hero"></div>
 
 <!-- TIPS -->
 <div class="tips-section">
@@ -587,10 +596,10 @@ nav { animation: sunriseNav 70s linear infinite; }
 
 <!-- ROOMS STRIP -->
 <div class="four-up">
-  <img src="airbnb-bedroom1.jpg" alt="Bedroom 1 — king bed">
-  <img src="airbnb-bedroom2.jpg" alt="Bedroom 2 — double bed">
-  <img src="airbnb-bathroom.jpg" alt="Bathroom with antique clawfoot bathtub">
-  <img src="woodstove.jpg" alt="Wood stove interior">
+  <img src="../airbnb-bedroom1.jpg" alt="Bedroom 1 — king bed">
+  <img src="../airbnb-bedroom2.jpg" alt="Bedroom 2 — double bed">
+  <img src="../airbnb-bathroom.jpg" alt="Bathroom with antique clawfoot bathtub">
+  <img src="../woodstove.jpg" alt="Wood stove interior">
 </div>
 
 <!-- LOCATION / NEARBY -->
@@ -605,7 +614,7 @@ nav { animation: sunriseNav 70s linear infinite; }
   </div>
   <div class="nearby-grid reveal">
     <div class="nearby-card">
-      <img src="carlos-paz.jpg" alt="Villa Carlos Paz lake">
+      <img src="../carlos-paz.jpg" alt="Villa Carlos Paz lake">
       <div class="nearby-num">01</div>
       <div class="nearby-dist">20 min</div>
       <div class="nearby-name">Carlos Paz</div>
@@ -613,7 +622,7 @@ nav { animation: sunriseNav 70s linear infinite; }
       <p class="nearby-desc es">La ciudad más animada de las Sierras — restaurantes, lago, vida nocturna y todos los servicios.</p>
     </div>
     <div class="nearby-card">
-      <img src="Cordoba-Argentine.jpg" alt="Córdoba city">
+      <img src="../Cordoba-Argentine.jpg" alt="Córdoba city">
       <div class="nearby-num">02</div>
       <div class="nearby-dist">30 min</div>
       <div class="nearby-name en">Córdoba City & Airport</div>
@@ -622,7 +631,7 @@ nav { animation: sunriseNav 70s linear infinite; }
       <p class="nearby-desc es">La segunda ciudad de Argentina — gastronomía, museos y el bohemio Barrio Güemes. Aeropuerto internacional también a 30 min.</p>
     </div>
     <div class="nearby-card">
-      <img src="alta-gracia.jpg" alt="Alta Gracia Jesuit estancia">
+      <img src="../alta-gracia.jpg" alt="Alta Gracia Jesuit estancia">
       <div class="nearby-num">03</div>
       <div class="nearby-dist">40 min</div>
       <div class="nearby-name">Alta Gracia</div>
@@ -630,7 +639,7 @@ nav { animation: sunriseNav 70s linear infinite; }
       <p class="nearby-desc es">Estancia jesuítica Patrimonio de la Humanidad UNESCO y una de las ciudades coloniales más bellas de Argentina.</p>
     </div>
     <div class="nearby-card">
-      <img src="san-clemente-river.jpg" alt="San Clemente river">
+      <img src="../san-clemente-river.jpg" alt="San Clemente river">
       <div class="nearby-num">04</div>
       <div class="nearby-dist">40 min</div>
       <div class="nearby-name">San Clemente</div>
@@ -663,7 +672,7 @@ nav { animation: sunriseNav 70s linear infinite; }
       </div>
     </div>
     <div class="rates-img">
-      <img src="PXL_20251203_133016307.jpg" alt="View through steel-frame windows to the terrace and valley">
+      <img src="../PXL_20251203_133016307.jpg" alt="View through steel-frame windows to the terrace and valley">
     </div>
   </div>
 </div>
@@ -709,22 +718,22 @@ nav { animation: sunriseNav 70s linear infinite; }
     <h2 class="section-title es">Los <em>espacios</em></h2>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-cell"><img src="house-dusk.avif" alt="House at dusk — glowing steel-frame windows"></div>
-    <div class="gallery-cell"><img src="house-exterior.jpg" alt="House and pool exterior"></div>
-    <div class="gallery-cell"><img src="house-overview.jpg" alt="House, pool and valley view"></div>
-    <div class="gallery-cell"><img src="airbnb-aerial.jpg" alt="Aerial view of house and pool"></div>
-    <div class="gallery-cell"><img src="living-room-stove.avif" alt="Open-plan living area at golden hour"></div>
-    <div class="gallery-cell"><img src="PXL_20250409_190232782.jpg" alt="Living room with wood stove"></div>
-    <div class="gallery-cell"><img src="PXL_20251203_133016307.jpg" alt="Steel-frame windows to terrace and valley"></div>
-    <div class="gallery-cell"><img src="PXL_20251216_112250440.jpg" alt="Garden and pool with valley views"></div>
-    <div class="gallery-cell"><img src="PXL_20250627_165946938.jpg" alt="Quincho outdoor living area"></div>
-    <div class="gallery-cell"><img src="PXL_20250320_175830160.jpg" alt="Quincho terrace with stone floor"></div>
-    <div class="gallery-cell"><img src="PXL_20231112_233014294.jpg" alt="Interior at night — fireplace"></div>
-    <div class="gallery-cell"><img src="still-life.jpg" alt="Kitchen still life with valley view"></div>
-    <div class="gallery-cell"><img src="IMG-20250605-WA0030.jpg" alt="Pool view through the pergola at golden hour"></div>
-    <div class="gallery-cell"><img src="PXL_20250316_133446486.jpg" alt="Pool edge with panoramic valley view"></div>
-    <div class="gallery-cell"><img src="PXL_20250627_165851963.jpg" alt="Outdoor rain shower on the terrace"></div>
-    <div class="gallery-cell"><img src="tree-allee.jpg" alt="Tree-lined entrance road"></div>
+    <div class="gallery-cell"><img src="../house-dusk.avif" alt="House at dusk — glowing steel-frame windows"></div>
+    <div class="gallery-cell"><img src="../house-exterior.jpg" alt="House and pool exterior"></div>
+    <div class="gallery-cell"><img src="../house-overview.jpg" alt="House, pool and valley view"></div>
+    <div class="gallery-cell"><img src="../airbnb-aerial.jpg" alt="Aerial view of house and pool"></div>
+    <div class="gallery-cell"><img src="../living-room-stove.avif" alt="Open-plan living area at golden hour"></div>
+    <div class="gallery-cell"><img src="../PXL_20250409_190232782.jpg" alt="Living room with wood stove"></div>
+    <div class="gallery-cell"><img src="../PXL_20251203_133016307.jpg" alt="Steel-frame windows to terrace and valley"></div>
+    <div class="gallery-cell"><img src="../PXL_20251216_112250440.jpg" alt="Garden and pool with valley views"></div>
+    <div class="gallery-cell"><img src="../PXL_20250627_165946938.jpg" alt="Quincho outdoor living area"></div>
+    <div class="gallery-cell"><img src="../PXL_20250320_175830160.jpg" alt="Quincho terrace with stone floor"></div>
+    <div class="gallery-cell"><img src="../PXL_20231112_233014294.jpg" alt="Interior at night — fireplace"></div>
+    <div class="gallery-cell"><img src="../still-life.jpg" alt="Kitchen still life with valley view"></div>
+    <div class="gallery-cell"><img src="../IMG-20250605-WA0030.jpg" alt="Pool view through the pergola at golden hour"></div>
+    <div class="gallery-cell"><img src="../PXL_20250316_133446486.jpg" alt="Pool edge with panoramic valley view"></div>
+    <div class="gallery-cell"><img src="../PXL_20250627_165851963.jpg" alt="Outdoor rain shower on the terrace"></div>
+    <div class="gallery-cell"><img src="../tree-allee.jpg" alt="Tree-lined entrance road"></div>
   </div>
 </div>
 
@@ -748,6 +757,7 @@ nav { animation: sunriseNav 70s linear infinite; }
     </div>
   </div>
 </div>
+
 
 <!-- BOOK CTA -->
 <div id="book">
@@ -820,8 +830,115 @@ nav { animation: sunriseNav 70s linear infinite; }
   function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 </script>
 
+
+<!-- V4 — subtle motion layer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  if (!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+  const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* hero: slow settle */
+  const heroImg = document.querySelector('.hero-img img');
+  if (heroImg && !rm) {
+    gsap.fromTo(heroImg, { scale: 1.08 }, { scale: 1, duration: 2.2, ease: 'power2.out' });
+    gsap.to(heroImg, { yPercent: 10, ease: 'none',
+      scrollTrigger: { trigger: '.hero-img', start: 'top bottom', end: 'bottom top', scrub: true } });
+  }
+  const heroInner = document.querySelector('.hero-inner');
+  if (heroInner) gsap.fromTo(heroInner.children, { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: 0.12, ease: 'power3.out', delay: 0.1 });
+
+  /* gentle parallax on photo strips */
+  if (!rm) {
+    document.querySelectorAll('.two-up img, .four-up img, .rates-img img').forEach(img => {
+      gsap.fromTo(img, { yPercent: -5, scale: 1.1 }, { yPercent: 5, scale: 1.1, ease: 'none',
+        scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+  }
+
+  /* gallery: staggered fade-up */
+  const cells = document.querySelectorAll('.gallery-cell');
+  if (cells.length) gsap.fromTo(cells, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.05,
+    scrollTrigger: { trigger: '.gallery-grid', start: 'top 85%' } });
+
+  /* $140 count-up */
+  const rate = document.querySelector('.rate-big');
+  if (rate) { const o = { v: 0 };
+    gsap.to(o, { v: 140, duration: 1.4, ease: 'power2.out',
+      onUpdate(){ rate.textContent = '$' + Math.round(o.v); },
+      scrollTrigger: { trigger: rate, start: 'top 85%', once: true } });
+  }
+
+  /* dawn cloud — one misty bank rolls left→right across the hero during the dark phase */
+  (function cloud(){
+    const wrap = document.querySelector('.mist');
+    const canvas = document.getElementById('mistCanvas');
+    if (!canvas || rm) return;
+    const ctx = canvas.getContext('2d');
+
+    function makeCloud(W, H, puffs){
+      const c = document.createElement('canvas');
+      c.width = W; c.height = H;
+      const x2 = c.getContext('2d');
+      for (let i = 0; i < puffs; i++) {
+        const px = W*0.5 + (Math.random()-0.5) * W*0.82;
+        const py = H*0.55 + (Math.random()-0.5) * H*0.6;
+        const centric = 1 - Math.min(1, Math.abs(px - W*0.5)/(W*0.5));
+        const r = (H*0.10) + Math.random() * H*0.30 * (0.5 + centric);
+        const a = (0.06 + Math.random()*0.11) * (0.35 + centric);
+        const g = x2.createRadialGradient(px, py, 0, px, py, r);
+        g.addColorStop(0, 'rgba(255,255,255,'+a.toFixed(3)+')');
+        g.addColorStop(1, 'rgba(255,255,255,0)');
+        x2.fillStyle = g;
+        x2.beginPath(); x2.arc(px, py, r, 0, 7); x2.fill();
+      }
+      return c;
+    }
+    const big  = makeCloud(1400, 520, 150);
+    const wisp = makeCloud(900, 300, 70);
+
+    function resize(){ canvas.width = wrap.clientWidth; canvas.height = wrap.clientHeight; }
+    resize(); window.addEventListener('resize', resize);
+
+    const CYCLE = 70000, t0 = performance.now();
+    const W_START = 0.04, W_LEN = 0.24;  // enters ~3s in, clears before the gold
+
+    function draw(now){
+      requestAnimationFrame(draw);
+      const p = ((now - t0) / CYCLE) % 1;
+      const u = ((p - W_START + 1) % 1) / W_LEN;
+      const w = canvas.width, h = canvas.height;
+      if (u >= 1) { if (canvas.__dirty) { ctx.clearRect(0,0,w,h); canvas.__dirty = false; } return; }
+      ctx.clearRect(0, 0, w, h);
+      canvas.__dirty = true;
+      const env = Math.sin(u * Math.PI);
+      const wob = Math.sin(now*0.0004) * h*0.03;
+
+      const bw = Math.max(w*0.85, 900), bh = bw*0.37;
+      const bx = -bw + u * (w + 2*bw);
+      ctx.globalAlpha = Math.min(1, env*1.1);
+      ctx.drawImage(big, bx, h*0.30 - bh/2 + wob, bw, bh);
+      ctx.drawImage(big, bx - bw*0.08, h*0.38 - bh/2 - wob, bw*1.05, bh);
+
+      const ww = bw*0.55, wh = ww*0.33;
+      const wx = -ww + Math.min(1, u*1.18) * (w + 2*ww);
+      ctx.globalAlpha = Math.min(1, env) * 0.8;
+      ctx.drawImage(wisp, wx, h*0.12 - wh/2 - wob, ww, wh);
+
+      const vx = -bw + Math.max(0, (u-0.12)/0.88) * (w + 2*bw);
+      ctx.globalAlpha = Math.min(1, env) * 0.45;
+      ctx.drawImage(big, vx, h*0.62 - bh/2 - wob, bw*1.15, bh*0.9);
+      ctx.globalAlpha = 1;
+    }
+    requestAnimationFrame(draw);
+  })();
+})();
+</script>
+
 <!-- AI CONCIERGE CHAT WIDGET -->
-<link rel="stylesheet" href="ai-assistant/widget/chat-widget.css">
+<link rel="stylesheet" href="../ai-assistant/widget/chat-widget.css">
 <script>
   window.QS_CHAT_CONFIG = {
     property: "quinta-sierras",
@@ -830,6 +947,6 @@ nav { animation: sunriseNav 70s linear infinite; }
     accent: "#111110"
   };
 </script>
-<script src="ai-assistant/widget/chat-widget.js" defer></script>
+<script src="../ai-assistant/widget/chat-widget.js" defer></script>
 </body>
 </html>
